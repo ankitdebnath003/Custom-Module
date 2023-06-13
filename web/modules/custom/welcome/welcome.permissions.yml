@@ -1,0 +1,4 @@
+administer hello_world:
+  title: 'Administer Hello World'
+  description: 'Allows users to administer Hello World.'
+  restrict access: true

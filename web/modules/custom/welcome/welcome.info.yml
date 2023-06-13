@@ -1,0 +1,7 @@
+name: Welcome Module
+description: This is our Welcome module to show the user Welcome message with the username
+core_version_requirement: 10.x
+type: module
+package: Custom Modules
+permissions:
+  - 'access custom module'
