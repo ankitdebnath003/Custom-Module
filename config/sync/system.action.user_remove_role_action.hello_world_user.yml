@@ -1,0 +1,14 @@
+uuid: 3b5bd05b-fa8a-49cc-b9c9-ff237c42ce37
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.hello_world_user
+  module:
+    - user
+id: user_remove_role_action.hello_world_user
+label: 'Remove the Hello World User role from the selected user(s)'
+type: user
+plugin: user_remove_role_action
+configuration:
+  rid: hello_world_user
