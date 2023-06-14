@@ -1,4 +1,4 @@
-administer hello_world:
-  title: 'Administer Hello World'
-  description: 'Allows users to administer Hello World.'
+welcome permission:
+  title: 'Administer Welcome'
+  description: 'Allows users to administer Welcome.'
   restrict access: true
