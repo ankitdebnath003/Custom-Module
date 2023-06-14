@@ -1,0 +1,10 @@
+name: Hello World Module
+description: This is our first hello world module
+core_version_requirement: 10.x
+type: module
+package: Custom Modules
+dependencies:
+  - drupal:action
+  - admin_toolbar:admin_toolbar
+test_dependencies:
+  - book
