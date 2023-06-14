@@ -4,9 +4,7 @@ core_version_requirement: 10.x
 type: module
 package: Custom Modules
 dependencies:
-  - action
-  - admin_toolbar:admin_toolbar_search
+  - drupal:action
+  - admin_toolbar:admin_toolbar
 test_dependencies:
   - book
-permissions:
-  - 'access custom module'
