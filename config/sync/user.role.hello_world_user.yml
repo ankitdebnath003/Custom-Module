@@ -1,9 +1,0 @@
-uuid: e68426bd-619d-4966-9a7d-9dcd7d720682
-langcode: en
-status: true
-dependencies: {  }
-id: hello_world_user
-label: 'Hello World User'
-weight: 4
-is_admin: null
-permissions: {  }
