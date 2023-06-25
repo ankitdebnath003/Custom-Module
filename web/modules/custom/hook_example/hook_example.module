@@ -1,0 +1,67 @@
+<?php
+
+/**
+ * @file
+ * Implemented a custom hook and use existing hook to track of a node page being
+ * viewed in each session.
+ */
+
+use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
+use Drupal\Core\Entity\EntityInterface;
+
+/**
+ * Implements hook_count_incremented().
+ * Display a message if the node page is being viewed for the first time.
+ */
+function hook_example_count_incremented(int $current_count, object $node) {
+  $user = \Drupal::currentUser();
+  // If this is the first time the user has viewed this node we display a
+  // message with the user's name if the user has logged in.
+  if ($current_count == 1) {
+    $messenger = \Drupal::messenger();
+
+    // Checking if the user is authenticated or anonymous user.
+    if ($user->Id()) {
+      $messenger->addMessage(t('Hey %name, This is the first time you have viewed this page %title.', [
+        '%name' => $user->getAccountName(),
+        '%title' => $node->label()
+      ]));
+      return;
+    }
+    $messenger->addMessage(t('This is the first time you have viewed the page %title.', ['%title' => $node->label()]));
+  }
+}
+
+/**
+ * Implements hook_ENTITY_TYPE_view().
+ * We are going to track the count of each node page for the current session
+ * of a user and display a message with the current count of the node page.
+ */
+function hook_example_node_view(array &$build, EntityInterface $entity, EntityViewDisplayInterface $display, $view_mode) {
+  $session = \Drupal::request()->getSession();
+  $current_counts = $session->get('hook_example.view_counts', []);
+  if (!isset($current_counts[$entity->id()])) {
+    $current_counts[$entity->id()] = 1;
+  }
+  else {
+    $current_counts[$entity->id()]++;
+  }
+  $session->set('hook_example.view_counts', $current_counts);
+
+  // Invoke a hook to alert other modules that the count was updated.
+  $module_handler = \Drupal::moduleHandler();
+
+  // Invoking hook_count_incremented() and passing all arguments, the current 
+  // view count for the node, and the node object itself.
+  $module_handler->invokeAll('count_incremented', [$current_counts[$entity->id()], $entity]);
+  // Display the current number of times the user has viewed the node page along 
+  // with the node's content.
+  $build['view_count'] = [
+    '#markup' => '<p>' . t('You have visited this page @total times in this session.', ['@total' => $current_counts[$entity->id()]]) . '</p>',
+    '#cache' => [
+      'max-age' => 0,
+    ],
+  ];
+}
+
+?>
