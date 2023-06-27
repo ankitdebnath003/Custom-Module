@@ -12,7 +12,6 @@ dependencies:
     - file
     - node
     - path
-    - routing_example
     - system
     - taxonomy
     - toolbar
@@ -28,7 +27,6 @@ permissions:
   - 'access content overview'
   - 'access contextual links'
   - 'access files overview'
-  - 'access the custom page'
   - 'access toolbar'
   - 'access tour'
   - 'administer url aliases'

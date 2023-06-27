@@ -1,0 +1,6 @@
+services:
+  routing_example.route_subscriber:
+    class: Drupal\routing_example\Routing\AlterRouting
+    tags:
+      - { name: event_subscriber }
+      
