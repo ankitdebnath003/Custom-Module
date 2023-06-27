@@ -1,3 +1,11 @@
+routing_example.campaign:
+  path: '/campaign/value/{data}'
+  defaults: 
+    _controller: '\Drupal\routing_example\Controller\RoutingExampleController::campaign'
+    _title: 'This is the Custom Routing page'
+  requirements:
+    _permission: 'access content'
+
 routing_example.routing_example:
   path: '/routing-example'
   defaults: 

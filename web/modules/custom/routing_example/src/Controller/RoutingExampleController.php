@@ -61,6 +61,22 @@ class RoutingExampleController extends ControllerBase
       '#title' => 'Hello ' . ucfirst($this->userEntity->getAccountName())
     ];
   }
+
+  /**
+   * This function takes a dynamic value from url and display it.
+   *
+   * @param int $data
+   *   This is the dynamic value getting from the url.
+   * 
+   * @return array
+   *   An array with title showing the number of campaign page the user is 
+   *   currently at.
+   */
+  public function campaign(int $data) {
+    return [
+      '#title' => 'You are in the ' . $data . ' page of the campaign.'
+    ];
+  }
 }
 
 ?>
