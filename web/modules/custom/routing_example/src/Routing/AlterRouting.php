@@ -18,9 +18,9 @@ class AlterRouting extends RouteSubscriberBase
    */
   protected function alterRoutes(RouteCollection $collection) {
     // Restrict access of our custom module's route.
-    if ($route = $collection->get('routing_example.routing_example')) {
-      $route->setRequirement('_role', 'administrator');
-    }
+    // if ($route = $collection->get('routing_example.routing_example')) {
+    //   $route->setRequirement('_role', 'administrator');
+    // }
   }
 }
 
