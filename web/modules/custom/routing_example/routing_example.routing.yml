@@ -1,0 +1,7 @@
+routing_example.routing_example:
+  path: '/routing-example'
+  defaults: 
+    _controller: '\Drupal\routing_example\Controller\RoutingExampleController::example'
+    _title: 'This is the Custom Routing page'
+  requirements:
+    _role: 'administrator+editor'

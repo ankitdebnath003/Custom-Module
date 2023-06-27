@@ -6,7 +6,6 @@ dependencies:
     - filter.format.basic_html
   module:
     - comment
-    - config_form
     - contact
     - filter
     - search
@@ -23,7 +22,6 @@ permissions:
   - 'access content'
   - 'access shortcuts'
   - 'access site-wide contact form'
-  - admin
   - 'post comments'
   - 'search content'
   - 'skip comment approval'
