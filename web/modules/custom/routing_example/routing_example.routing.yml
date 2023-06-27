@@ -4,4 +4,4 @@ routing_example.routing_example:
     _controller: '\Drupal\routing_example\Controller\RoutingExampleController::example'
     _title: 'This is the Custom Routing page'
   requirements:
-    _role: 'administrator+editor'
+    _permission: 'access the custom page'
