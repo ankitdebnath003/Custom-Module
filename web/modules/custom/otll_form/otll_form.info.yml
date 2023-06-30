@@ -1,0 +1,5 @@
+name: OTLL Form Module
+description: This is our OTLL Form module using Ajax
+core_version_requirement: 10.x
+type: module
+package: Custom Modules
