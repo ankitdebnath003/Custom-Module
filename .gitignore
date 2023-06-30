@@ -63,3 +63,5 @@
 /drupal.phar
 /drupal
 /.vscode
+web/README.md
+/web/modules/custom/custom_hook

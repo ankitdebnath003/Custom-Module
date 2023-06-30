@@ -2,6 +2,7 @@
 
 namespace Drupal\welcome\Controller;
 
+use Drupal\Core\Cache\Cache;
 use Drupal\Core\Controller\ControllerBase;
 
 /**
@@ -19,9 +20,13 @@ class WelcomeController extends ControllerBase
    *   Returns the hello message with the current user's name.
    */
   public function welcomeCurrentUser() {
+    $user = \Drupal\user\Entity\User::load(\Drupal::currentUser()->id());
     $user_name = \Drupal::currentUser()->getAccountName();
     return [
-      '#title' => 'Hello ' . ucfirst($user_name)
+      '#title' => 'Hello ' . ucfirst($user_name),
+      '#cache' => [
+        'tags' => $user->getCacheTags(),
+      ]
     ];
   }
 }
