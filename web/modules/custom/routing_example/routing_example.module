@@ -1,0 +1,18 @@
+<?php
+
+use Drupal\user\Entity\User;
+use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
+
+/**
+ * Implements hook_entity_access().
+ * This hook is used to restrict the access to view the route for editor roles.
+ */
+function routing_example_entity_access(\Drupal\Core\Entity\EntityInterface $entity, $operation, \Drupal\Core\Session\AccountInterface $account) {
+	$route_name = \Drupal::routeMatch()->getRouteName();
+	$userEntity = User::load($account->id());
+	if ($route_name == 'routing_example.routing_example' && $userEntity->hasRole('editor')) {
+		throw new AccessDeniedHttpException();
+	}
+}
+
+?>
