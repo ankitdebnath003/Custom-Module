@@ -1,0 +1,16 @@
+<?php
+
+use Drupal\Core\Routing\TrustedRedirectResponse;
+
+/**
+ * Implements hook_user_login().
+ * 
+ * Redirects the user to the specified page after successfully login.
+ */
+function plugin_example_user_login() {
+  $response = new TrustedRedirectResponse("/custom-welcome-page");
+  $response->send();
+  return;
+}
+
+?>
