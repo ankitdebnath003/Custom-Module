@@ -28,6 +28,7 @@ module:
   field_ui: 0
   file: 0
   filter: 0
+  flagship_form: 0
   hello_world: 0
   help: 0
   history: 0

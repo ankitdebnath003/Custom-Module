@@ -1,0 +1,7 @@
+flagship_form.show_form:
+  path: '/flagship-form'
+  defaults:
+    _title: 'Flagship Form'
+    _controller: '\Drupal\flagship_form\Controller\FlagshipFormController::showForm'
+  requirements:
+    _role: 'administrator'

@@ -1,15 +1,15 @@
-uuid: 659fb740-871b-40fc-87c1-fad138042a4d
+uuid: 3a1c9107-f6f2-4de3-9edf-6cc32af7c8b5
 langcode: en
 status: true
 dependencies:
+  module:
+    - system
   theme:
     - olivero
-_core:
-  default_config_hash: 6aOgWsNTXjqrDm98TXSAjP6qd2nCijD1xw45MrnbK-Y
-id: olivero_page_title
+id: olivero_pagetitle
 theme: olivero
-region: content_above
-weight: -5
+region: breadcrumb
+weight: 0
 provider: null
 plugin: page_title_block
 settings:
@@ -17,4 +17,8 @@ settings:
   label: 'Page title'
   label_display: '0'
   provider: core
-visibility: {  }
+visibility:
+  request_path:
+    id: request_path
+    negate: true
+    pages: /flagship-form
