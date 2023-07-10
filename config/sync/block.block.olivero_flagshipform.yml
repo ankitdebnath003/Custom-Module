@@ -1,4 +1,4 @@
-uuid: 6654f496-3c6d-4f4b-a3ee-4315c3102a27
+uuid: 55304964-8d21-484b-8aef-4c6e65374aeb
 langcode: en
 status: true
 dependencies:
@@ -11,10 +11,10 @@ theme: olivero
 region: content
 weight: 0
 provider: null
-plugin: flagship_form_example
+plugin: flagship_form
 settings:
-  id: flagship_form_example
+  id: flagship_form
   label: 'Flagship Form'
-  label_display: visible
+  label_display: '0'
   provider: flagship_form
 visibility: {  }

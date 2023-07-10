@@ -165,7 +165,7 @@ class FlagshipForm extends ConfigFormBase
    * 
    * @param array $form
    *   Stores all the information about the form.
-   * @param Drupal\Core\Form\FormStateInterface $form_state
+   * @param \Drupal\Core\Form\FormStateInterface $form_state
    *   Stores all the values and state of the form.
    */
   public function removeOneRow(array &$form, FormStateInterface $form_state) {

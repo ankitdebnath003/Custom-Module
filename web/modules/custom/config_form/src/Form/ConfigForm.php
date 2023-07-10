@@ -3,7 +3,10 @@
 namespace Drupal\config_form\Form;
 
 use Drupal\Core\Form\ConfigFormBase;
+use Drupal\config_form\FormValidator;
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Messenger\Messenger;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * This is a config form that is created to take input from admin only.
@@ -13,7 +16,45 @@ use Drupal\Core\Form\FormStateInterface;
  * 
  * @author Ankit Debnath <ankit.debnath@innoraft.com>
  */
-class ConfigForm extends ConfigFormBase {
+class ConfigForm extends ConfigFormBase 
+{  
+  /**
+   * Stores the object of Custom Validation Service class.
+   *
+   * @var object
+   */
+  protected $validator;
+
+  /**
+   * Stores the object of Messenger class.
+   *
+   * @var object
+   */
+  protected $messenger;
+  
+  /**
+   * Constructor is used to initialize the custom validation service and Messenger
+   * class object to the class variable.
+   *
+   * @param FormValidator $validator
+   *   Stores the object of FormValidator class.
+   * @param Messenger $messenger
+   *   Stores the object of Messenger class.
+   */
+  public function __construct(FormValidator $validator, Messenger $messenger) {
+    $this->validator = $validator;
+    $this->messenger = $messenger;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public static function create(ContainerInterface $container) {
+    return new static(
+      $container->get('config_form.validator'),
+      $container->get('messenger'),
+    );
+  }
 
   /**
    * {@inheritdoc}
@@ -40,7 +81,7 @@ class ConfigForm extends ConfigFormBase {
       '#required' => TRUE,
     ];
     $form['phone_number'] = [
-      '#type' => 'number',
+      '#type' => 'textfield',
       '#title' => $this->t('Enter Your Phone Number'),
       '#required' => TRUE,
     ];
@@ -73,30 +114,22 @@ class ConfigForm extends ConfigFormBase {
     $name = $form_state->getValue('full_name');
     $email = $form_state->getValue('email');
     $phone = $form_state->getValue('phone_number');
-    $domains = ["yahoo", "gmail", "outlook"];
-    if (!preg_match('/^[A-Za-z\s]*$/', $name)) {
-      $form_state->setErrorByName('name', $this->t('Please enter a valid name. Name does not contain any number or special character.'));
+    $domains = ["yahoo", "gmail", "outlook", "innoraft"];
+
+    // Validate the name of the user.
+    $name_error = $this->validator->nameValidation($name);
+    if ($name_error !== TRUE) {
+      $form_state->setErrorByName('full_name', $name_error);
     }
-    elseif (strlen($name) <= 3) {
-      $form_state->setErrorByName('name', $this->t('Please enter a valid name. Name length is too short.'));
+    // Validate the phone number of the user.
+    $phone_error = $this->validator->phoneValidation($phone);
+    if ($phone_error !== TRUE) {
+      $form_state->setErrorByName('phone_number', $phone_error);
     }
-    elseif (strlen($phone) != 10) {
-      $form_state->setErrorByName('phone', $this->t('Please enter a 10 digit phone number.'));
-    }
-    elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-      $form_state->setErrorByName('email', $this->t('Please enter valid email address.'));  
-    }
-    else {
-      $pos = strpos($email, '@');
-      $last_dot_position = strrpos($email, '.');
-      $domain_name = substr($email, $pos + 1, $last_dot_position - $pos - 1);
-      if (!in_array($domain_name, $domains)) {
-        $form_state->setErrorByName('email', $this->t('Domain is not accepted. Please use public domains like gmail, yahoo, etc.'));  
-      }
-      $extension = substr($email, $last_dot_position);
-      if ($extension != '.com') {
-        $form_state->setErrorByName('email', $this->t('Only domains with .com extension is allowed.'));  
-      }
+    // Validate the email of the user.
+    $email_error = $this->validator->emailValidation($email, $domains);
+    if ($email_error !== TRUE) {
+      $form_state->setErrorByName('email', $email_error);
     }
   }
 
@@ -110,6 +143,6 @@ class ConfigForm extends ConfigFormBase {
     $config->set('email', $form_state->getValue('email'));
     $config->set('gender', $form_state->getValue('gender'));
     $config->save();
-    \Drupal::messenger()->addMessage($this->t('Form Submitted Successfully'), 'status', TRUE);
+    $this->messenger->addMessage($this->t('Form Submitted Successfully'), 'status', TRUE);
   }
 }

@@ -1,15 +1,15 @@
 data:
-  0:
-    group_name: HCL
-    first_label: Habitation
-    first_value: '134345'
+  1:
+    group_name: HCLSUNO
+    first_label: Residents
+    first_value: '23324'
     second_label: People
-    second_value: '3245235'
+    second_value: '234234'
     remove: Remove
   2:
     group_name: 'CLEAN NOIDA'
     first_label: People
-    first_value: '14324'
+    first_value: '234234'
     second_label: Residents
-    second_value: '235325'
+    second_value: '3243424'
     remove: Remove

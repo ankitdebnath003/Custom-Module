@@ -2,11 +2,14 @@
 
 namespace Drupal\plugin_example\Plugin\Block;
 
-use Drupal\Core\Access\AccessResult;
-use Drupal\Core\Block\BlockBase;
-use Drupal\Core\Session\AccountInterface;
 use Drupal\user\Entity\Role;
-use Drupal\user\Entity\User;
+use Drupal\Core\Block\BlockBase;
+use Drupal\Core\Access\AccessResult;
+use Drupal\Core\Entity\EntityTypeManager;
+use Drupal\Core\Session\AccountInterface;
+use Drupal\Core\Routing\CurrentRouteMatch;
+use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * Create a custom block to show the user a welcome message with their roles and
@@ -22,9 +25,68 @@ use Drupal\user\Entity\User;
  * 
  * @author Ankit Debnath <ankit.debnath@innoraft.com>
  */
-class ExampleBlock extends BlockBase 
-{
-  
+class ExampleBlock extends BlockBase implements ContainerFactoryPluginInterface
+{  
+  /**
+   * This variable is used to store the current user's information.
+   *
+   * @var object
+   */
+  protected $currentUser;
+    
+  /**
+   * This variable is used to store the EntityTypeManager object.
+   *
+   * @var object
+   */
+  protected $entityTypeManager;
+
+  /**
+   * This variable is used to store the CurrentRouteMatch object.
+   *
+   * @var object
+   */
+  protected $route;
+
+  /**
+   * This constructor is used to set the current user's account information and 
+   * entity type manager to the class variable and call the parent constructor 
+   * with other values to set.
+   *
+   * @param array $configuration
+   *   A configuration array containing information about the plugin instance.
+   * @param string $plugin_id
+   *   The plugin_id for the plugin instance.
+   * @param mixed $plugin_definition
+   *   The plugin implementation definition.
+   * @param \Drupal\Core\Session\AccountInterface $currentUser
+   *   Stores the information of the current user.
+   * @param \Drupal\Core\Entity\EntityTypeManager $entityTypeManager
+   *   Stores the object of the EntityTypeManager.
+   * @param \Drupal\Core\Routing\CurrentRouteMatch $route
+   *   Stores the object of the CurrentRouteMatch.
+   */
+  public function __construct(array $configuration, $plugin_id, $plugin_definition, AccountInterface $account, EntityTypeManager $entity, CurrentRouteMatch $route) {
+    parent::__construct($configuration, $plugin_id, $plugin_definition);
+    $this->currentUser = $account;
+    $this->entityTypeManager = $entity;
+    $this->route = $route;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition) {
+    return new static(
+      $configuration,
+      $plugin_id,
+      $plugin_definition,
+      $container->get('current_user'),
+      $container->get('entity_type.manager'),
+      $container->get('current_route_match'),
+    );
+  }
+
   /**
    * This function is used to get all the role names of the user.
    *
@@ -32,12 +94,9 @@ class ExampleBlock extends BlockBase
    *   The display names of the roles of the user.
    */
   private function getUserRoles() {
-    $user = \Drupal::currentUser();
-    $user_entity = User::load($user->id());
-
-    $roles = $user_entity->getRoles();
+    $roles = $this->currentUser->getRoles();
     $roles = array_diff($roles, ['authenticated']);
-    $role_storage = \Drupal::entityTypeManager()->getStorage('user_role');
+    $role_storage = $this->entityTypeManager->getStorage('user_role');
 
     // Getting the display names of the roles instead of machine names.
     foreach ($roles as $role) {
@@ -68,7 +127,7 @@ class ExampleBlock extends BlockBase
    * {@inheritdoc}
    */
   protected function blockAccess(AccountInterface $account) {
-    $route_name = \Drupal::routeMatch()->getRouteName();
+    $route_name = $this->route->getRouteName();
     if ($route_name == 'plugin_example.example') {
       return AccessResult::allowed();
     }

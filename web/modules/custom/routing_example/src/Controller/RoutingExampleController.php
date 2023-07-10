@@ -2,9 +2,10 @@
 
 namespace Drupal\routing_example\Controller;
 
-use Drupal\Core\Controller\ControllerBase;
-use Drupal\user\Entity\User;
 use Drupal\Core\Access\AccessResult;
+use Drupal\Core\Controller\ControllerBase;
+use Drupal\Core\Session\AccountProxyInterface;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * This class is used to show how routing is used, how to use custom access
@@ -17,21 +18,30 @@ use Drupal\Core\Access\AccessResult;
 class RoutingExampleController extends ControllerBase 
 {  
   /**
-   * This variable is used to store the user's information fetching from User Entity.
+   * This variable is used to store the current user's information.
    *
    * @var object
    */
-  private $userEntity;
+  protected $currentUser;
   
   /**
-   * This constructor is used to load the CurrentUser service of drupal and by 
-   * using it we can fetch the user's full information from the user entity.
+   * This constructor is used set the current user's account information to the 
+   * class variable.
    *
-   * @return void
+   * @param Drupal\Core\Session\AccountProxyInterface $account
+   *   Stores the information of the current user.
    */
-  public function __construct() {
-    $user = \Drupal::currentUser();
-    $this->userEntity = User::load($user->id());
+  public function __construct(AccountProxyInterface $account) {
+    $this->currentUser = $account;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public static function create(ContainerInterface $container) {
+    return new static(
+      $container->get('current_user')
+    );
   }
   
   /**
@@ -44,7 +54,7 @@ class RoutingExampleController extends ControllerBase
    */
   public function customAccessCheck() {
     // Checking if the role has the custom permission.
-    if ($this->userEntity->hasPermission('access the custom page')) {
+    if ($this->currentUser->hasPermission('access the custom page')) {
       return AccessResult::allowed();
     }
     return AccessResult::forbidden();
@@ -58,7 +68,7 @@ class RoutingExampleController extends ControllerBase
    */
   public function example() {
     return [
-      '#title' => 'Hello ' . ucfirst($this->userEntity->getAccountName())
+      '#title' => 'Hello ' . ucfirst($this->currentUser->getAccountName())
     ];
   }
 

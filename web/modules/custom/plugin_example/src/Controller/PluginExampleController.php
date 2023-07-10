@@ -13,13 +13,12 @@ use Drupal\Core\Controller\ControllerBase;
  */
 class PluginExampleController extends ControllerBase 
 {
-
   /**
    * This function is used to show a message to the user with the custom block 
    * in the particular route.
    * 
    * @return array
-   *   The message to display on the page.
+   *   The message to display on the page title.
    */
   public function customPage() {
     return [

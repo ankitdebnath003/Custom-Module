@@ -20,14 +20,13 @@ use Drupal\user\Entity\User;
  */
 class OtllForm extends FormBase 
 {
-  
   /**
    * Stores the object of AjaxResponse class to handle the form validation and 
    * through Ajax.
    *
    * @var object
    */
-  private $response;
+  protected $response;
   
   /**
    * Constructor is used to initialize the object of AjaxResponse class to the 
