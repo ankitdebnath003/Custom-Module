@@ -1,0 +1,14 @@
+<?php
+
+/**
+ * Implements hook_theme().
+ */
+function custom_field_theme() {
+  return [
+    'custom_field' => [
+      'variables' => [
+        'dynamic_color' => NULL,
+      ],
+    ],
+  ];
+}
