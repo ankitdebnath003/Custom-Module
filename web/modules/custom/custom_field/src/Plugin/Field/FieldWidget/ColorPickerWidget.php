@@ -2,12 +2,11 @@
 
 namespace Drupal\custom_field\Plugin\Field\FieldWidget;
 
-use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Field\FieldItemListInterface;
+use Drupal\Core\Form\FormStateInterface;
 
 /**
- * This field widget is taking input of the color from a color picker and then 
- * store the hex value in the database.
+ * This field widget is taking input of the colo from a color picker.
  *
  * @FieldWidget(
  *   id = "color_picker",
@@ -17,8 +16,8 @@ use Drupal\Core\Field\FieldItemListInterface;
  *   }
  * )
  */
-class ColorPickerWidget extends ColorWidgetBase 
-{
+class ColorPickerWidget extends ColorWidgetBase {
+
   /**
    * {@inheritdoc}
    */
@@ -28,9 +27,10 @@ class ColorPickerWidget extends ColorWidgetBase
     $element['color_combination'] = [
       '#type' => 'color',
       '#title' => $this->t('Pick Color'),
-      '#default_value' => isset($color) ? $color : '',
+      '#default_value' => $color ?? '',
       '#access' => $this->access,
     ];
     return $element;
   }
+
 }

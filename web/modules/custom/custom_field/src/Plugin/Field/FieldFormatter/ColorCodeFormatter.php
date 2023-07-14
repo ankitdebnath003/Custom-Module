@@ -16,8 +16,8 @@ use Drupal\Core\Field\FormatterBase;
  *   }
  * )
  */
-class ColorCodeFormatter extends FormatterBase 
-{
+class ColorCodeFormatter extends FormatterBase {
+
   /**
    * {@inheritdoc}
    */
@@ -32,7 +32,7 @@ class ColorCodeFormatter extends FormatterBase
         ]),
       ];
     }
-    
+
     // Converting the color code to array of RGB.
     $color = json_decode($color, TRUE);
     $elements[] = [
@@ -45,4 +45,5 @@ class ColorCodeFormatter extends FormatterBase
 
     return $elements;
   }
+
 }

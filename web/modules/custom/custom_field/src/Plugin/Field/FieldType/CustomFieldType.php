@@ -17,8 +17,8 @@ use Drupal\Core\TypedData\DataDefinition;
  *   default_formatter = "color_code"
  * )
  */
-class CustomFieldType extends FieldItemBase 
-{
+class CustomFieldType extends FieldItemBase {
+
   /**
    * {@inheritdoc}
    */
@@ -46,8 +46,9 @@ class CustomFieldType extends FieldItemBase
    */
   public static function propertyDefinitions(FieldStorageDefinitionInterface $field_definition) {
     $properties['color_combination'] = DataDefinition::create('string')
-      ->setLabel(t('Color Combination'));
+      ->setLabel('Color Combination');
 
     return $properties;
   }
+
 }

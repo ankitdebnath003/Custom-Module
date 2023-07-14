@@ -17,20 +17,20 @@ use Drupal\Core\Field\FormatterBase;
  *   }
  * )
  */
-class BackgroundColorFormatter extends FormatterBase 
-{  
+class BackgroundColorFormatter extends FormatterBase {
+
   /**
    * {@inheritdoc}
    */
   public function viewElements(FieldItemListInterface $items, $langcode) {
     $color = $items[0]->color_combination;
 
-    // Checking if the color is in rgb then convert the rgb value to its hex value.
+    // Checking if the color is in rgb then convert the rgb to its hex value.
     if (substr($color, 0, 1) !== '#') {
       $color = json_decode($color, TRUE);
       $color = Color::rgbToHex($color);
     }
- 
+
     $build = [
       '#theme' => 'custom_field',
       '#dynamic_color' => $color,

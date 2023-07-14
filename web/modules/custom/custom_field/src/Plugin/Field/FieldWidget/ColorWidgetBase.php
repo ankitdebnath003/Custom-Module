@@ -2,23 +2,25 @@
 
 namespace Drupal\custom_field\Plugin\Field\FieldWidget;
 
-use Drupal\Core\Field\WidgetBase;
 use Drupal\Component\Utility\Color;
-use Drupal\Core\Form\FormStateInterface;
-use Drupal\Core\Field\FieldItemListInterface;
-use Drupal\Core\Session\AccountProxyInterface;
 use Drupal\Core\Field\FieldDefinitionInterface;
+use Drupal\Core\Field\FieldItemListInterface;
+use Drupal\Core\Field\WidgetBase;
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Session\AccountProxyInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
- * This field widget is used to define some functions that will be used in 
- * multiple widgets. Checks if the user is admin or not and convert the value 
- * to corresponding rgb or hex based on the type.
+ * This field widget is the base widget.
+ *
+ * This is used to define some functions that will be used in multiple widgets.
+ * Checks if the user is admin or not and convert the value to
+ * corresponding rgb or hex based on the type.
  */
-class ColorWidgetBase extends WidgetBase
-{
+class ColorWidgetBase extends WidgetBase {
+
   /**
-   * Stores boolean value to check if the role has access to view the fields or not.
+   * Stores boolean value to check if the role has access to view the fields.
    *
    * @var bool
    */
@@ -50,31 +52,32 @@ class ColorWidgetBase extends WidgetBase
    */
   public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition) {
     return new static(
-      $plugin_id, 
+      $plugin_id,
       $plugin_definition,
-      $configuration['field_definition'], 
-      $configuration['settings'], 
+      $configuration['field_definition'],
+      $configuration['settings'],
       $configuration['third_party_settings'],
       $container->get('current_user'),
     );
   }
-  
+
   /**
-   * This function is used to check if the user is admin or not. If the user is
-   * not an admin then set the class $access variable to FALSE so that the user
-   * can't see the fields.
+   * This function is used to check if the user is admin or not.
+   *
+   * If the user is not an admin then set the class $access variable to FALSE so
+   * that the user can't see the fields.
    *
    * @param \Drupal\Core\Session\AccountProxyInterface $current_user
    *   Stores the object of Account Proxy Interface class.
    */
   public function checkAccess(AccountProxyInterface $current_user) {
     $role = $current_user->getRoles();
-    
+
     if (!in_array('administrator', $role)) {
       $this->access = FALSE;
     }
   }
-  
+
   /**
    * This function is used to convert the color values according to the widgets.
    *
@@ -84,12 +87,12 @@ class ColorWidgetBase extends WidgetBase
    *   Stores the integer value.
    * @param string $type
    *   Stores the type in which the value will be converted.
-   * 
+   *
    * @return string|array
    *   If the widget is set to rgb then returns the array otherwise hex string.
    */
   public function convertColor(FieldItemListInterface $items, $delta, string $type) {
-    $color = isset($items[$delta]->color_combination) ? $items[$delta]->color_combination : '';
+    $color = $items[$delta]->color_combination ?? '';
     if ($type === 'hex') {
       if (substr($color, 0, 1) !== '#' && $color) {
         $color = json_decode($color, TRUE);
@@ -110,5 +113,5 @@ class ColorWidgetBase extends WidgetBase
    */
   public function formElement(FieldItemListInterface $items, $delta, Array $element, Array &$form, FormStateInterface $form_state) {
   }
-  
+
 }

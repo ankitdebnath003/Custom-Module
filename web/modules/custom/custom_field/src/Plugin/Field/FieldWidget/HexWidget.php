@@ -3,12 +3,11 @@
 namespace Drupal\custom_field\Plugin\Field\FieldWidget;
 
 use Drupal\Component\Utility\Color;
-use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Field\FieldItemListInterface;
+use Drupal\Core\Form\FormStateInterface;
 
 /**
- * This field widget is taking input of hex color and then after validation 
- * store the hex value in the database.
+ * This field widget is taking input of hex color and store it in the database.
  *
  * @FieldWidget(
  *   id = "hex_widget",
@@ -18,8 +17,8 @@ use Drupal\Core\Field\FieldItemListInterface;
  *   }
  * )
  */
-class HexWidget extends ColorWidgetBase 
-{
+class HexWidget extends ColorWidgetBase {
+
   /**
    * {@inheritdoc}
    */
@@ -29,12 +28,12 @@ class HexWidget extends ColorWidgetBase
     $element['color_combination'] = [
       '#type' => 'textfield',
       '#title' => $this->t('Hex Code'),
-      '#default_value' => isset($color) ? $color : '',
+      '#default_value' => $color ?? '',
       '#access' => $this->access,
     ];
     return $element;
   }
-    
+
   /**
    * {@inheritdoc}
    */
@@ -44,11 +43,12 @@ class HexWidget extends ColorWidgetBase
       $form_state->setErrorByName('color_combination', 'Invalid hex value');
     }
 
-    // Checking if the user add # in the hex value or not. If the user does not 
+    // Checking if the user add # in the hex value or not. If the user does not
     // add it then add it to the string.
     if (substr($color, 0, 1) !== '#') {
       $values[0]['color_combination'] = '#' . $color;
     }
     return $values;
   }
+
 }

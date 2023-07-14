@@ -2,12 +2,11 @@
 
 namespace Drupal\custom_field\Plugin\Field\FieldWidget;
 
-use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Field\FieldItemListInterface;
+use Drupal\Core\Form\FormStateInterface;
 
 /**
- * This field widget is taking input of three colors red, green and blue and then
- * after validation store the hex value of the RGB color in the database.
+ * This field widget is taking input of RGB color and store it in the database.
  *
  * @FieldWidget(
  *   id = "rgb_widget",
@@ -17,20 +16,20 @@ use Drupal\Core\Field\FieldItemListInterface;
  *   }
  * )
  */
-class RGBFieldWidget extends ColorWidgetBase 
-{
+class RGBFieldWidget extends ColorWidgetBase {
+
   /**
    * {@inheritdoc}
    */
   public function formElement(FieldItemListInterface $items, $delta, Array $element, Array &$form, FormStateInterface $form_state) {
     $color = $this->convertColor($items, $delta, 'rgb');
-    
+
     $element['color_combination'] = [
       '#access' => $this->access,
       '#attributes' => [
         'class' => [
-          'rgb-color-wrapper'
-        ]
+          'rgb-color-wrapper',
+        ],
       ],
     ];
 
@@ -40,27 +39,27 @@ class RGBFieldWidget extends ColorWidgetBase
       '#size' => 15,
       '#min' => 0,
       '#max' => 255,
-      '#default_value' => isset($color['red']) ? $color['red'] : '',
+      '#default_value' => $color['red'] ?? '',
     ];
-    
+
     $element['color_combination']['green'] = [
       '#type' => 'number',
       '#title' => $this->t('Green'),
       '#size' => 15,
       '#min' => 0,
       '#max' => 255,
-      '#default_value' => isset($color['green']) ? $color['green'] : '',
+      '#default_value' => $color['green'] ?? '',
     ];
-    
+
     $element['color_combination']['blue'] = [
       '#type' => 'number',
       '#title' => $this->t('Blue'),
       '#size' => 15,
       '#min' => 0,
       '#max' => 255,
-      '#default_value' => isset($color['blue']) ? $color['blue'] : '',
+      '#default_value' => $color['blue'] ?? '',
     ];
-    
+
     $element['#theme_wrappers'] = ['container', 'form_element'];
     $element['#attributes']['class'][] = 'container-inline';
     $element['#attributes']['class'][] = 'custom-rgb-field-elements';
@@ -68,10 +67,9 @@ class RGBFieldWidget extends ColorWidgetBase
 
     return $element;
   }
-  
+
   /**
-   * This function is used to check that all the red, green and blue colors are
-   * in the correct range.
+   * This function is used to validate the RGB color.
    *
    * @param array $color
    *   Stores the red, green and blue colors.
@@ -89,7 +87,7 @@ class RGBFieldWidget extends ColorWidgetBase
       $form_state->setErrorByName('blue', $this->t("Blue Color must be in the range 0 to 255."));
     }
   }
-  
+
   /**
    * {@inheritdoc}
    */
