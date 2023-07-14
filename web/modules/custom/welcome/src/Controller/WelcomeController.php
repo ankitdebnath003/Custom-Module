@@ -39,4 +39,17 @@ class WelcomeController extends ControllerBase {
     );
   }
 
+  /**
+   * This function is used to show the current user a hello message with name.
+   *
+   * @return array
+   *   Returns the hello message with the current user's name.
+   */
+  public function welcomeCurrentUser() {
+    $user_name = $this->account->getAccountName();
+    return [
+      '#title' => 'Hello ' . ucfirst($user_name),
+    ];
+  }
+
 }
