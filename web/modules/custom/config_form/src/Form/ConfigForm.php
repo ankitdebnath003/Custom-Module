@@ -10,11 +10,8 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * This is a config form that is created to take input from admin only.
- * And then store the data in the config_form.settings.yml file.
- * 
+ *
  * @package Drupal\config_form\Form
- * 
- * @author Ankit Debnath <ankit.debnath@innoraft.com>
  */
 class ConfigForm extends ConfigFormBase 
 {  
@@ -57,6 +54,32 @@ class ConfigForm extends ConfigFormBase
   }
 
   /**
+   * Stores the object of Messenger class.
+   *
+   * @var object
+   */
+  protected $messenger;
+
+  /**
+   * Initialize the Messenger class object to the class variable.
+   *
+   * @param \Drupal\Core\Messenger\Messenger $messenger
+   *   Stores the object of Messenger class.
+   */
+  public function __construct(Messenger $messenger) {
+    $this->messenger = $messenger;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public static function create(ContainerInterface $container) {
+    return new static(
+      $container->get('messenger'),
+    );
+  }
+
+  /**
    * {@inheritdoc}
    */
   protected function getEditableConfigNames() {
@@ -78,16 +101,19 @@ class ConfigForm extends ConfigFormBase
     $form['full_name'] = [
       '#type' => 'textfield',
       '#title' => $this->t('Enter Your Full Name'),
+      '#default_value' => $config->get('full_name'),
       '#required' => TRUE,
     ];
     $form['phone_number'] = [
       '#type' => 'textfield',
       '#title' => $this->t('Enter Your Phone Number'),
+      '#default_value' => $config->get('phone_number'),
       '#required' => TRUE,
     ];
     $form['email'] = [
       '#type' => 'textfield',
       '#title' => $this->t('Enter Your Email Id'),
+      '#default_value' => $config->get('email'),
       '#required' => TRUE,
     ];
     $form['gender'] = [
@@ -97,6 +123,7 @@ class ConfigForm extends ConfigFormBase
         'male' => $this->t('Male'),
         'female' => $this->t('Female'),
       ],
+      '#default_value' => $config->get('gender'),
       '#required' => TRUE,
     ];
     $form['submit'] = [
@@ -110,7 +137,7 @@ class ConfigForm extends ConfigFormBase
   /**
    * {@inheritdoc}
    */
-  public function validateForm(array &$form, FormStateInterface $form_state) {   
+  public function validateForm(array &$form, FormStateInterface $form_state) {
     $name = $form_state->getValue('full_name');
     $email = $form_state->getValue('email');
     $phone = $form_state->getValue('phone_number');
@@ -126,10 +153,30 @@ class ConfigForm extends ConfigFormBase
     if ($phone_error !== TRUE) {
       $form_state->setErrorByName('phone_number', $phone_error);
     }
+<<<<<<< HEAD
     // Validate the email of the user.
     $email_error = $this->validator->emailValidation($email, $domains);
     if ($email_error !== TRUE) {
       $form_state->setErrorByName('email', $email_error);
+=======
+    elseif (strlen($phone) != 10) {
+      $form_state->setErrorByName('phone', $this->t('Please enter a 10 digit phone number.'));
+    }
+    elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+      $form_state->setErrorByName('email', $this->t('Please enter valid email address.'));
+    }
+    else {
+      $pos = strpos($email, '@');
+      $last_dot_position = strrpos($email, '.');
+      $domain_name = substr($email, $pos + 1, $last_dot_position - $pos - 1);
+      if (!in_array($domain_name, $domains)) {
+        $form_state->setErrorByName('email', $this->t('Domain is not accepted. Please use public domains like gmail, yahoo, etc.'));
+      }
+      $extension = substr($email, $last_dot_position);
+      if ($extension != '.com') {
+        $form_state->setErrorByName('email', $this->t('Only domains with .com extension is allowed.'));
+      }
+>>>>>>> FT2023-307
     }
   }
 
@@ -145,4 +192,5 @@ class ConfigForm extends ConfigFormBase
     $config->save();
     $this->messenger->addMessage($this->t('Form Submitted Successfully'), 'status', TRUE);
   }
+
 }

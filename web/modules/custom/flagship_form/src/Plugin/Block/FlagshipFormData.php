@@ -16,8 +16,13 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  *   category = @Translation("Flagship")
  * )
  */
+<<<<<<< HEAD
 class FlagshipFormData extends BlockBase implements ContainerFactoryPluginInterface
 {
+=======
+class FlagshipFormData extends BlockBase {
+
+>>>>>>> FT2023-307
   /**
    * This variable is used to store the ConfigFactoryInterface object.
    *

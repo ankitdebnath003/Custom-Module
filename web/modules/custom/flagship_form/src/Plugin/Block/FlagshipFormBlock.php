@@ -2,9 +2,12 @@
 
 namespace Drupal\flagship_form\Plugin\Block;
 
-use Drupal\Core\Block\BlockBase;
 use Drupal\Core\Access\AccessResult;
+<<<<<<< HEAD
 use Drupal\Core\Form\FormBuilder;
+=======
+use Drupal\Core\Block\BlockBase;
+>>>>>>> FT2023-307
 use Drupal\Core\Session\AccountInterface;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\Core\Routing\CurrentRouteMatch;
@@ -19,8 +22,13 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  *   category = @Translation("Flagship")
  * )
  */
+<<<<<<< HEAD
 class FlagshipFormBlock extends BlockBase implements ContainerFactoryPluginInterface
 {
+=======
+class FlagshipFormBlock extends BlockBase {
+
+>>>>>>> FT2023-307
   /**
    * This variable is used to store the CurrentRouteMatch object.
    *
@@ -73,7 +81,11 @@ class FlagshipFormBlock extends BlockBase implements ContainerFactoryPluginInter
    * {@inheritdoc}
    */
   public function build() {
+<<<<<<< HEAD
     $form = $this->formBuilder->getForm('Drupal\flagship_form\Form\FlagshipForm'); 
+=======
+    $form = \Drupal::formBuilder()->getForm('Drupal\flagship_form\Form\FlagshipForm');
+>>>>>>> FT2023-307
     return $form;
   }
 
@@ -87,4 +99,5 @@ class FlagshipFormBlock extends BlockBase implements ContainerFactoryPluginInter
     }
     return AccessResult::forbidden();
   }
+
 }
