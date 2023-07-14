@@ -2,38 +2,35 @@
 
 namespace Drupal\plugin_example\Plugin\Block;
 
-use Drupal\user\Entity\Role;
-use Drupal\Core\Block\BlockBase;
 use Drupal\Core\Access\AccessResult;
+use Drupal\Core\Block\BlockBase;
 use Drupal\Core\Entity\EntityTypeManager;
-use Drupal\Core\Session\AccountInterface;
-use Drupal\Core\Routing\CurrentRouteMatch;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
+use Drupal\Core\Routing\CurrentRouteMatch;
+use Drupal\Core\Session\AccountInterface;
+use Drupal\user\Entity\Role;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
- * Create a custom block to show the user a welcome message with their roles and
- * specify on which route this block will be shown.
+ * Create a custom block to show the user a welcome message with their roles.
  *
  * @Block(
  *   id = "plugin_example_example",
  *   admin_label = @Translation("Example"),
  *   category = @Translation("Plugin Example")
  * )
- * 
+ *
  * @package Drupal\plugin_example\Plugin\Block
- * 
- * @author Ankit Debnath <ankit.debnath@innoraft.com>
  */
-class ExampleBlock extends BlockBase implements ContainerFactoryPluginInterface
-{  
+class ExampleBlock extends BlockBase implements ContainerFactoryPluginInterface {
+
   /**
    * This variable is used to store the current user's information.
    *
    * @var object
    */
   protected $currentUser;
-    
+
   /**
    * This variable is used to store the EntityTypeManager object.
    *
@@ -49,9 +46,7 @@ class ExampleBlock extends BlockBase implements ContainerFactoryPluginInterface
   protected $route;
 
   /**
-   * This constructor is used to set the current user's account information and 
-   * entity type manager to the class variable and call the parent constructor 
-   * with other values to set.
+   * This constructor is initilizing the instances.
    *
    * @param array $configuration
    *   A configuration array containing information about the plugin instance.
@@ -59,9 +54,9 @@ class ExampleBlock extends BlockBase implements ContainerFactoryPluginInterface
    *   The plugin_id for the plugin instance.
    * @param mixed $plugin_definition
    *   The plugin implementation definition.
-   * @param \Drupal\Core\Session\AccountInterface $currentUser
+   * @param \Drupal\Core\Session\AccountInterface $account
    *   Stores the information of the current user.
-   * @param \Drupal\Core\Entity\EntityTypeManager $entityTypeManager
+   * @param \Drupal\Core\Entity\EntityTypeManager $entity
    *   Stores the object of the EntityTypeManager.
    * @param \Drupal\Core\Routing\CurrentRouteMatch $route
    *   Stores the object of the CurrentRouteMatch.
@@ -133,6 +128,5 @@ class ExampleBlock extends BlockBase implements ContainerFactoryPluginInterface
     }
     return AccessResult::forbidden();
   }
-}
 
-?>
+}

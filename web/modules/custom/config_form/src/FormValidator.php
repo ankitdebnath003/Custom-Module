@@ -2,27 +2,23 @@
 
 namespace Drupal\config_form;
 
-use Drupal\Core\StringTranslation\StringTranslationTrait;
-
 /**
- * This class is used to validate full name, phone number, email address and gender 
- * of an user and return the error message if any otherwise returns TRUE.
- * 
+ * This class is used to validate form.
+ *
+ * It validates full name, phone number, email address and gender of an user and
+ * return the error message if any otherwise returns TRUE.
+ *
  * @package Drupal\config_form
- * 
- * @author Ankit Debnath <ankit.debnath@innoraft.com>
  */
-class FormValidator 
-{
-  use StringTranslationTrait;
-  
+class FormValidator {
+
   /**
    * This function is used to validate the full name of the user.
    *
    * @param string $name
    *   Stores the full name from the form.
-   * 
-   * @return string|boolean 
+   *
+   * @return string|bool
    *   If the validation got some error then returns the error message otherwise
    *   returns TRUE.
    */
@@ -38,14 +34,14 @@ class FormValidator
     }
     return TRUE;
   }
-  
+
   /**
    * This function is used to validate the indian phone number of the user.
    *
    * @param string $phone
    *   Stores the phone number from the form.
-   * 
-   * @return string|boolean 
+   *
+   * @return string|bool
    *   If the validation got some error then returns the error message otherwise
    *   returns TRUE.
    */
@@ -58,17 +54,18 @@ class FormValidator
     }
     return TRUE;
   }
-  
+
   /**
-   * This function is used to validate the email address of the user and check
-   * if the domain of the email id is in the allowlist or not.
+   * This function is used to validate the email address of the user.
+   *
+   * It also checks if the domain of the email id is in the allowlist or not.
    *
    * @param string $email
    *   Stores the email from the form.
    * @param array $domains
    *   Stores the domains that the email id should allow.
-   * 
-   * @return string|boolean 
+   *
+   * @return string|bool
    *   If the validation got some error then returns the error message otherwise
    *   returns TRUE.
    */
@@ -98,9 +95,9 @@ class FormValidator
    * Thisk function is used to validate the gender.
    *
    * @param mixed $gender
-   *   Stores either the gender or NULL if nothing from the radio options has 
+   *   Stores either the gender or NULL if nothing from the radio options has
    *   been selected.
-   * 
+   *
    * @return string|bool
    *   Based on the validation of the gender.
    */
@@ -110,4 +107,5 @@ class FormValidator
     }
     return TRUE;
   }
+
 }

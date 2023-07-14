@@ -2,12 +2,12 @@
 
 namespace Drupal\flagship_form\Plugin\Block;
 
-use Drupal\Core\Block\BlockBase;
 use Drupal\Core\Access\AccessResult;
+use Drupal\Core\Block\BlockBase;
 use Drupal\Core\Form\FormBuilder;
-use Drupal\Core\Session\AccountInterface;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\Core\Routing\CurrentRouteMatch;
+use Drupal\Core\Session\AccountInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
@@ -19,8 +19,8 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  *   category = @Translation("Flagship")
  * )
  */
-class FlagshipFormBlock extends BlockBase implements ContainerFactoryPluginInterface
-{
+class FlagshipFormBlock extends BlockBase implements ContainerFactoryPluginInterface {
+
   /**
    * This variable is used to store the CurrentRouteMatch object.
    *
@@ -36,8 +36,7 @@ class FlagshipFormBlock extends BlockBase implements ContainerFactoryPluginInter
   protected $formBuilder;
 
   /**
-   * This constructor is used to set the current route and form builder to the 
-   * class variable and call the parent constructor with other values to set.
+   * Initializes the instance of the block.
    *
    * @param array $configuration
    *   A configuration array containing information about the plugin instance.
@@ -73,7 +72,7 @@ class FlagshipFormBlock extends BlockBase implements ContainerFactoryPluginInter
    * {@inheritdoc}
    */
   public function build() {
-    $form = $this->formBuilder->getForm('Drupal\flagship_form\Form\FlagshipForm'); 
+    $form = $this->formBuilder->getForm('Drupal\flagship_form\Form\FlagshipForm');
     return $form;
   }
 
@@ -87,4 +86,5 @@ class FlagshipFormBlock extends BlockBase implements ContainerFactoryPluginInter
     }
     return AccessResult::forbidden();
   }
+
 }

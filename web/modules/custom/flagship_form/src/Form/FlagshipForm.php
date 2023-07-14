@@ -6,15 +6,14 @@ use Drupal\Core\Form\ConfigFormBase;
 use Drupal\Core\Form\FormStateInterface;
 
 /**
- * This is a config form that is created to take input from admin only and store 
- * the data of the form in the flagship_form.settings.yml file.
- * 
+ * This is a config form that is created to take input from admin only.
+ *
+ * It also stores the data of the form in the flagship_form.settings.yml file.
+ *
  * @package Drupal\flagship_form\Form
- * 
- * @author Ankit Debnath <ankit.debnath@innoraft.com>
  */
-class FlagshipForm extends ConfigFormBase 
-{
+class FlagshipForm extends ConfigFormBase {
+
   /**
    * {@inheritdoc}
    */
@@ -37,13 +36,13 @@ class FlagshipForm extends ConfigFormBase
 
     $form_data = $form_state->get('flagship_form_values');
 
-    // Checking if the form data is empty then get the data from the config table.
+    // Checking if the form data is empty then get the data from the config.
     if (empty($form_data)) {
       $form_data = $config->get('data');
       $form_state->set('flagship_form_values', $form_data);
     }
 
-    // Checking if the form data in the config table is also empty then create 
+    // Checking if the form data in the config table is also empty then create
     // an array with empty values.
     // This is basically used to set the value for the first time after creating
     // the form as the config table will be empty.
@@ -56,7 +55,13 @@ class FlagshipForm extends ConfigFormBase
     $form['flagship'] = [
       '#type' => 'table',
       '#title' => 'Flagship Table',
-      '#header' => ['Group Name', '1st Label', '1st Value', '2nd Label', '2nd Value'],
+      '#header' => [
+        'Group Name',
+        '1st Label',
+        '1st Value',
+        '2nd Label',
+        '2nd Value',
+      ],
       '#prefix' => '<div id="flagship-form-wrapper">',
       '#suffix' => '</div>',
     ];
@@ -117,14 +122,13 @@ class FlagshipForm extends ConfigFormBase
   }
 
   /**
-   * This function is used to return the updated form after adding or removing 
-   * one row. 
-   * 
+   * Used to return the updated form after adding or removing one row.
+   *
    * @param array $form
    *   Stores all the information about the form.
    * @param Drupal\Core\Form\FormStateInterface $form_state
    *   Stores all the values and state of the form.
-   * 
+   *
    * @return array
    *   Returns the flagship form.
    */
@@ -133,11 +137,11 @@ class FlagshipForm extends ConfigFormBase
   }
 
   /**
-   * This is used to add one extra row when the admin clicks on the Add one more
-   * button. 
+   * Used to add one extra row when the admin clicks on the Add one more button.
+   *
    * After setting an empty array to the form_state set the form rebuild to true
    * to rebuild the form with extra fields.
-   *  
+   *
    * @param array $form
    *   Stores all the information about the form.
    * @param Drupal\Core\Form\FormStateInterface $form_state
@@ -157,12 +161,12 @@ class FlagshipForm extends ConfigFormBase
   }
 
   /**
-   * This function is used to remove the corresponding row when the admin clicks
-   * on the Remove button.
-   * At first getting the #name element of the row to determine which row to remove
-   * and then remove the array from the form_state and also from the form and then
-   * set the form rebuild to true to rebuild the form with a less row.
-   * 
+   * Remove the corresponding row when the admin clicks on the Remove button.
+   *
+   * At first getting the #name element of the row to determine which row to
+   * remove and then remove the array from the form_state and also from the form
+   * and then set the form rebuild to true to rebuild the form with a less row.
+   *
    * @param array $form
    *   Stores all the information about the form.
    * @param \Drupal\Core\Form\FormStateInterface $form_state
@@ -195,4 +199,5 @@ class FlagshipForm extends ConfigFormBase
     $config->set('data', $form_data);
     $config->save();
   }
+
 }

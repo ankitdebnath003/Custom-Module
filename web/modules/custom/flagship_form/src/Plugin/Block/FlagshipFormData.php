@@ -16,8 +16,8 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  *   category = @Translation("Flagship")
  * )
  */
-class FlagshipFormData extends BlockBase implements ContainerFactoryPluginInterface
-{
+class FlagshipFormData extends BlockBase implements ContainerFactoryPluginInterface {
+
   /**
    * This variable is used to store the ConfigFactoryInterface object.
    *
@@ -26,8 +26,7 @@ class FlagshipFormData extends BlockBase implements ContainerFactoryPluginInterf
   protected $config;
 
   /**
-   * This constructor is used to set the Config Factory Interface to the 
-   * class variable and call the parent constructor with other values to set.
+   * Initializes the instance of the block.
    *
    * @param array $configuration
    *   A configuration array containing information about the plugin instance.

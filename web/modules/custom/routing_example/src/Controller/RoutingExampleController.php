@@ -8,25 +8,24 @@ use Drupal\Core\Session\AccountProxyInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
- * This class is used to show how routing is used, how to use custom access
- * checks, and how to take value from dynamic parameters.
- * 
+ * This class is used to for routing.
+ *
+ * How it is used, how to use custom access checks, and how to take value from
+ * dynamic parameters.
+ *
  * @package Drupal\routing_example\Controller
- * 
- * @author Ankit Debnath <ankit.debnath@innoraft.com>
  */
-class RoutingExampleController extends ControllerBase 
-{  
+class RoutingExampleController extends ControllerBase {
+
   /**
    * This variable is used to store the current user's information.
    *
    * @var object
    */
   protected $currentUser;
-  
+
   /**
-   * This constructor is used set the current user's account information to the 
-   * class variable.
+   * Initializes the AccountProxyInterface to the class variable.
    *
    * @param Drupal\Core\Session\AccountProxyInterface $account
    *   Stores the information of the current user.
@@ -43,13 +42,14 @@ class RoutingExampleController extends ControllerBase
       $container->get('current_user')
     );
   }
-  
+
   /**
-   * This function is used to check custom access to a route. If a user has a 
-   * specific permission then the user can view the page.
+   * This function is used to check custom access to a route.
+   *
+   * If a user has a specific permission then the user can view the page.
    *
    * @return \Drupal\Core\Access\AccessResultInterface
-   *   The result of accessing the page based on the permission and deny if the 
+   *   The result of accessing the page based on the permission and deny if the
    *   user doesn't have the permission.
    */
   public function customAccessCheck() {
@@ -61,14 +61,14 @@ class RoutingExampleController extends ControllerBase
   }
 
   /**
-   * This function is used to show the current user a hello message with their name.
+   * This function is used to show the current user a hello message with name.
    *
    * @return array
    *   Returns the hello message with the current user's name.
    */
   public function example() {
     return [
-      '#title' => 'Hello ' . ucfirst($this->currentUser->getAccountName())
+      '#title' => 'Hello ' . ucfirst($this->currentUser->getAccountName()),
     ];
   }
 
@@ -77,16 +77,15 @@ class RoutingExampleController extends ControllerBase
    *
    * @param int $data
    *   This is the dynamic value getting from the url.
-   * 
+   *
    * @return array
-   *   An array with title showing the number of campaign page the user is 
+   *   An array with title showing the number of campaign page the user is
    *   currently at.
    */
   public function campaign(int $data) {
     return [
-      '#title' => 'You are in the ' . $data . ' page of the campaign.'
+      '#title' => 'You are in the ' . $data . ' page of the campaign.',
     ];
   }
-}
 
-?>
+}

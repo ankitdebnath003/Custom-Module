@@ -2,22 +2,19 @@
 
 namespace Drupal\config_form\Form;
 
-use Drupal\Core\Form\ConfigFormBase;
 use Drupal\config_form\FormValidator;
+use Drupal\Core\Form\ConfigFormBase;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Messenger\Messenger;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * This is a config form that is created to take input from admin only.
- * And then store the data in the config_form.settings.yml file.
- * 
+ *
  * @package Drupal\config_form\Form
- * 
- * @author Ankit Debnath <ankit.debnath@innoraft.com>
  */
-class ConfigForm extends ConfigFormBase 
-{  
+class ConfigForm extends ConfigFormBase {
+
   /**
    * Stores the object of Custom Validation Service class.
    *
@@ -31,14 +28,13 @@ class ConfigForm extends ConfigFormBase
    * @var object
    */
   protected $messenger;
-  
+
   /**
-   * Constructor is used to initialize the custom validation service and Messenger
-   * class object to the class variable.
+   * Initialize the custom validation service and Messenger class object.
    *
-   * @param FormValidator $validator
+   * @param \Drupal\config_form\FormValidator $validator
    *   Stores the object of FormValidator class.
-   * @param Messenger $messenger
+   * @param \Drupal\Core\Messenger\Messenger $messenger
    *   Stores the object of Messenger class.
    */
   public function __construct(FormValidator $validator, Messenger $messenger) {
@@ -78,16 +74,19 @@ class ConfigForm extends ConfigFormBase
     $form['full_name'] = [
       '#type' => 'textfield',
       '#title' => $this->t('Enter Your Full Name'),
+      '#default_value' => $config->get('full_name'),
       '#required' => TRUE,
     ];
     $form['phone_number'] = [
       '#type' => 'textfield',
       '#title' => $this->t('Enter Your Phone Number'),
+      '#default_value' => $config->get('phone_number'),
       '#required' => TRUE,
     ];
     $form['email'] = [
       '#type' => 'textfield',
       '#title' => $this->t('Enter Your Email Id'),
+      '#default_value' => $config->get('email'),
       '#required' => TRUE,
     ];
     $form['gender'] = [
@@ -97,6 +96,7 @@ class ConfigForm extends ConfigFormBase
         'male' => $this->t('Male'),
         'female' => $this->t('Female'),
       ],
+      '#default_value' => $config->get('gender'),
       '#required' => TRUE,
     ];
     $form['submit'] = [
@@ -110,7 +110,7 @@ class ConfigForm extends ConfigFormBase
   /**
    * {@inheritdoc}
    */
-  public function validateForm(array &$form, FormStateInterface $form_state) {   
+  public function validateForm(array &$form, FormStateInterface $form_state) {
     $name = $form_state->getValue('full_name');
     $email = $form_state->getValue('email');
     $phone = $form_state->getValue('phone_number');
@@ -145,4 +145,5 @@ class ConfigForm extends ConfigFormBase
     $config->save();
     $this->messenger->addMessage($this->t('Form Submitted Successfully'), 'status', TRUE);
   }
+
 }
