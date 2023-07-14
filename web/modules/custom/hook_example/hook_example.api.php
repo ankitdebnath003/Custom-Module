@@ -15,11 +15,9 @@
  * @param int $current_count
  *   The number of times that the current user has viewed the node during this
  *   session.
- * @param EntityInterface $node
+ * @param EntityInterface $entity
  *   The node being viewed.
  */
 function hook_count_incremented(int $current_count, object $entity) {
   // Further implementation here.
 }
-
-?>
