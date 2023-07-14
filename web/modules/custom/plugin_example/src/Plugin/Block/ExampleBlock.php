@@ -2,15 +2,6 @@
 
 namespace Drupal\plugin_example\Plugin\Block;
 
-<<<<<<< HEAD
-use Drupal\user\Entity\Role;
-use Drupal\Core\Block\BlockBase;
-use Drupal\Core\Access\AccessResult;
-use Drupal\Core\Entity\EntityTypeManager;
-use Drupal\Core\Session\AccountInterface;
-use Drupal\Core\Routing\CurrentRouteMatch;
-use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
-=======
 use Drupal\Core\Access\AccessResult;
 use Drupal\Core\Block\BlockBase;
 use Drupal\Core\Entity\EntityTypeManager;
@@ -18,7 +9,6 @@ use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\Core\Routing\CurrentRouteMatch;
 use Drupal\Core\Session\AccountInterface;
 use Drupal\user\Entity\Role;
->>>>>>> FT2023-307
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
@@ -32,24 +22,15 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  *
  * @package Drupal\plugin_example\Plugin\Block
  */
-<<<<<<< HEAD
-class ExampleBlock extends BlockBase implements ContainerFactoryPluginInterface
-{  
-=======
 class ExampleBlock extends BlockBase implements ContainerFactoryPluginInterface {
 
->>>>>>> FT2023-307
   /**
    * This variable is used to store the current user's information.
    *
    * @var object
    */
   protected $currentUser;
-<<<<<<< HEAD
-    
-=======
 
->>>>>>> FT2023-307
   /**
    * This variable is used to store the EntityTypeManager object.
    *
@@ -65,13 +46,7 @@ class ExampleBlock extends BlockBase implements ContainerFactoryPluginInterface 
   protected $route;
 
   /**
-<<<<<<< HEAD
-   * This constructor is used to set the current user's account information and 
-   * entity type manager to the class variable and call the parent constructor 
-   * with other values to set.
-=======
    * This constructor is initilizing the instances.
->>>>>>> FT2023-307
    *
    * @param array $configuration
    *   A configuration array containing information about the plugin instance.
@@ -79,15 +54,9 @@ class ExampleBlock extends BlockBase implements ContainerFactoryPluginInterface 
    *   The plugin_id for the plugin instance.
    * @param mixed $plugin_definition
    *   The plugin implementation definition.
-<<<<<<< HEAD
-   * @param \Drupal\Core\Session\AccountInterface $currentUser
-   *   Stores the information of the current user.
-   * @param \Drupal\Core\Entity\EntityTypeManager $entityTypeManager
-=======
    * @param \Drupal\Core\Session\AccountInterface $account
    *   Stores the information of the current user.
    * @param \Drupal\Core\Entity\EntityTypeManager $entity
->>>>>>> FT2023-307
    *   Stores the object of the EntityTypeManager.
    * @param \Drupal\Core\Routing\CurrentRouteMatch $route
    *   Stores the object of the CurrentRouteMatch.

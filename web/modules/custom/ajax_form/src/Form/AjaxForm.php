@@ -2,13 +2,13 @@
 
 namespace Drupal\ajax_form\Form;
 
+use Drupal\config_form\FormValidator;
+use Drupal\Core\Ajax\AjaxResponse;
 use Drupal\Core\Ajax\CssCommand;
 use Drupal\Core\Ajax\HtmlCommand;
-use Drupal\Core\Ajax\AjaxResponse;
 use Drupal\Core\Form\ConfigFormBase;
-use Drupal\Core\Messenger\Messenger;
-use Drupal\config_form\FormValidator;
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Messenger\Messenger;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
@@ -19,41 +19,28 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  *
  * @package Drupal\ajax_form\Form
  */
-<<<<<<< HEAD
-class AjaxForm extends ConfigFormBase 
-{
-=======
 class AjaxForm extends ConfigFormBase {
 
->>>>>>> FT2023-307
   /**
    * Stores the object of AjaxResponse class.
    *
    * @var object
    */
-<<<<<<< HEAD
   protected $response;
-  
+
   /**
    * Stores the object of FormValidator class to handle the form validation.
    *
    * @var object
-=======
-  private $response;
-
-  /**
-   * Initialize the object of AjaxResponse class to the class variable.
->>>>>>> FT2023-307
    */
   protected $validator;
-  
+
   /**
-   * Constructor is used to initialize the object of AjaxResponse, FormValidator
-   * and Messenger class to the class variable.
-   * 
-   * @param FormValidator $validator
+   * Initialize the object of AjaxResponse, FormValidator and Messenger class.
+   *
+   * @param \Drupal\config_form\FormValidator $validator
    *   Stores the object of FormValidator Class.
-   * @param Messenger $messenger
+   * @param \Drupal\Core\Messenger\Messenger $messenger
    *   Stores the object of Messenger Class.
    */
   public function __construct(FormValidator $validator, Messenger $messenger) {
@@ -61,7 +48,7 @@ class AjaxForm extends ConfigFormBase {
     $this->validator = $validator;
     $messenger->deleteByType('error');
   }
-  
+
   /**
    * {@inheritdoc}
    */
@@ -69,7 +56,7 @@ class AjaxForm extends ConfigFormBase {
     return new static(
       $container->get('config_form.validator'),
       $container->get('messenger'),
-    );    
+    );
   }
 
   /**
@@ -91,16 +78,10 @@ class AjaxForm extends ConfigFormBase {
    */
   public function buildForm(array $form, FormStateInterface $form_state) {
     $config = $this->config('ajax_config_form.settings');
-<<<<<<< HEAD
-		$form['full_name'] = [
-			'#type' => 'textfield',
-      '#required' => TRUE,
-			'#title' => $this->t('Enter Your Full Name :'),
-=======
     $form['full_name'] = [
       '#type' => 'textfield',
+      '#required' => TRUE,
       '#title' => $this->t('Enter Your Full Name :'),
->>>>>>> FT2023-307
       '#default_value' => $config->get('full_name'),
       '#prefix' => '<div id="full-name-wrapper">',
       '#suffix' => '<span id="full-name-error"></span></div>',
@@ -149,137 +130,21 @@ class AjaxForm extends ConfigFormBase {
   }
 
   /**
-<<<<<<< HEAD
-   * This function is used to Validate each field of the config form and show the
-   * error message if any or stores the value of the form to the database.
-   *
-   * @param array $form
-   *   Stores all the values of the fields and other informations of the form.
-   * @param FormStateInterface $form_state
-=======
-   * Thisk function is used to validate the name.
-   *
-   * @param string $name
-   *   Stores the full name from the form.
-   *
-   * @return bool
-   *   Based on the validation of the name.
-   */
-  public function nameValidation(string $name) {
-    if (!strlen($name)) {
-      $this->response->addCommand(new HtmlCommand('#full-name-error', 'Please Enter Your Name.'));
-    }
-    elseif (!preg_match('/^[A-Za-z\s]*$/', $name)) {
-      $this->response->addCommand(new HtmlCommand('#full-name-error', 'Please enter a valid name. Name does not contain any number or special character.'));
-    }
-    elseif (strlen($name) <= 3) {
-      $this->response->addCommand(new HtmlCommand('#full-name-error', 'Please enter a valid name. Name length is too short.'));
-    }
-    else {
-      $this->response->addCommand(new CssCommand('#edit-full-name', ['border' => '2px solid green']));
-      return TRUE;
-    }
-    return FALSE;
-  }
-
-  /**
-   * Thisk function is used to validate the phone number.
-   *
-   * @param string $phone
-   *   Stores the phone number from the form.
-   *
-   * @return bool
-   *   Based on the validation of the phone.
-   */
-  public function phoneValidation(string $phone) {
-    if (!strlen($phone)) {
-      $this->response->addCommand(new HtmlCommand('#phone-error', 'Please Enter Your Phone Number.'));
-    }
-    elseif (!preg_match('/^\+91[6-9][0-9]{9}$/', $phone)) {
-      $this->response->addCommand(new HtmlCommand('#phone-error', 'Please enter a 10 digit indian phone number starting with +91.'));
-    }
-    else {
-      $this->response->addCommand(new CssCommand('#edit-phone-number', ['border' => '2px solid green']));
-      return TRUE;
-    }
-    return FALSE;
-  }
-
-  /**
-   * Thisk function is used to validate the email.
-   *
-   * @param string $email
-   *   Stores the email from the form.
-   *
-   * @return bool
-   *   Based on the validation of the email.
-   */
-  public function emailValidation(string $email) {
-    $domains = ["yahoo", "gmail", "outlook", "innoraft"];
-    if (!strlen($email)) {
-      $this->response->addCommand(new HtmlCommand('#email-error', 'Please Enter Your Email ID.'));
-    }
-    elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-      $this->response->addCommand(new HtmlCommand('#email-error', 'Please enter valid email address.'));
-    }
-    else {
-      $pos = strpos($email, '@');
-      $last_dot_position = strrpos($email, '.');
-      $domain_name = substr($email, $pos + 1, $last_dot_position - $pos - 1);
-      $extension = substr($email, $last_dot_position);
-      if (!in_array($domain_name, $domains)) {
-        $this->response->addCommand(new HtmlCommand('#email-error', 'Domain is not accepted. Please use public domains like gmail, yahoo, etc.'));
-      }
-      elseif ($extension != '.com') {
-        $this->response->addCommand(new HtmlCommand('#email-error', 'Only domains with .com extension is allowed.'));
-      }
-      else {
-        $this->response->addCommand(new CssCommand('#edit-email', ['border' => '2px solid green']));
-        return TRUE;
-      }
-      return FALSE;
-    }
-  }
-
-  /**
-   * Thisk function is used to validate the gender.
-   *
-   * @param mixed $gender
-   *   Stores either the gender or NULL if nothing from the radio options has
-   *   been selected from the form.
-   *
-   * @return bool
-   *   Based on the validation of the gender.
-   */
-  public function genderValidation(mixed $gender) {
-    if (!$gender) {
-      $this->response->addCommand(new HtmlCommand('#gender-error', 'Please Select Your Gender.'));
-      return FALSE;
-    }
-    return TRUE;
-  }
-
-  /**
    * This function is used to Validate each field of the config form.
    *
-   * It also shows the error message if any or stores the value of the form to
-   * the database.
+   * It shows the error message if any or stores the value of the form to the
+   * database.
    *
    * @param array $form
    *   Stores all the values of the fields and other informations of the form.
    * @param \Drupal\Core\Form\FormStateInterface $form_state
->>>>>>> FT2023-307
    *   Stores all the information about the form.
    *
    * @return Response
    *   Response to the Ajax request to make changes in the form.
    */
-<<<<<<< HEAD
-  public function formValidation(array &$form, FormStateInterface $form_state) {    
-    $domains = ["yahoo", "gmail", "outlook", "innoraft"];
-=======
   public function formValidation(array &$form, FormStateInterface $form_state) {
->>>>>>> FT2023-307
+    $domains = ["yahoo", "gmail", "outlook", "innoraft"];
     $this->response->addCommand(new HtmlCommand('#full-name-error, #email-error, #phone-error, #gender-error, #submit-message', ''));
     $this->response->addCommand(new CssCommand('#edit-email, #edit-full-name, #edit-phone-number', ['border' => '']));
 
@@ -316,15 +181,9 @@ class AjaxForm extends ConfigFormBase {
       $this->response->addCommand(new HtmlCommand('#gender-error', $gender_error));
     }
 
-<<<<<<< HEAD
-    // Checking if all the validations are passed. Then call the function to store 
-    // the values of the form in the database.
-    if ($name_error === TRUE && $phone_error === TRUE && $email_error === TRUE && $gender_error === TRUE) {
-=======
     // Checking if all the validations are passed. Then call the function to
     // store the values of the form in the database.
-    if ($f1 && $f2 && $f3 && $f4) {
->>>>>>> FT2023-307
+    if ($name_error === TRUE && $phone_error === TRUE && $email_error === TRUE && $gender_error === TRUE) {
       $this->response->addCommand(new HtmlCommand('#submit-message', 'Form Submitted Successfully.'));
       $this->response->addCommand(new CssCommand('#submit-message', ['color' => 'green']));
       $this->submit($form_state);
@@ -332,19 +191,11 @@ class AjaxForm extends ConfigFormBase {
     $this->response->addCommand(new CssCommand('#email-error, #full-name-error, #phone-error, #gender-error', ['color' => 'red']));
     return $this->response;
   }
-<<<<<<< HEAD
-	
-	/**
-	 * This function is used to store all the values of the form in the database.
-	 *
-	 * @param Drupal\Core\Form\FormStateInterface $form_state
-=======
 
   /**
    * This function is used to store all the values of the form in the database.
    *
    * @param Drupal\Core\Form\FormStateInterface $form_state
->>>>>>> FT2023-307
    *   Stores all the information of the form.
    */
   public function submit(FormStateInterface $form_state) {

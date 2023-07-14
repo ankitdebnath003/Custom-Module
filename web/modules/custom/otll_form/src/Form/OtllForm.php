@@ -18,25 +18,15 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  *
  * @package Drupal\otll_form\Form
  */
-<<<<<<< HEAD
-class OtllForm extends FormBase 
-{
-=======
 class OtllForm extends FormBase {
 
->>>>>>> FT2023-307
   /**
    * Stores the object of AjaxResponse class.
    *
    * @var object
    */
-<<<<<<< HEAD
   protected $response;
-  
-=======
-  private $response;
 
->>>>>>> FT2023-307
   /**
    * Stores the metadata of UserStorageInterface.
    *

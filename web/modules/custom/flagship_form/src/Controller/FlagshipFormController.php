@@ -5,8 +5,7 @@ namespace Drupal\flagship_form\Controller;
 use Drupal\Core\Controller\ControllerBase;
 
 /**
- * This controller is created to return to a page that renders the flagship form
- * block.
+ * This controller creates to return to a page that renders the flagship form.
  */
 class FlagshipFormController extends ControllerBase {
 

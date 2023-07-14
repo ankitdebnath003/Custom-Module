@@ -9,13 +9,8 @@ use Drupal\Core\Controller\ControllerBase;
  *
  * @package Drupal\plugin_example\Controller
  */
-<<<<<<< HEAD
-class PluginExampleController extends ControllerBase 
-{
-=======
 class PluginExampleController extends ControllerBase {
 
->>>>>>> FT2023-307
   /**
    * This function is used to show a message to the user with the custom block.
    *

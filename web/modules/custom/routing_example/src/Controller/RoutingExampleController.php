@@ -23,34 +23,15 @@ class RoutingExampleController extends ControllerBase {
    * @var object
    */
   protected $currentUser;
-<<<<<<< HEAD
-  
-  /**
-   * This constructor is used set the current user's account information to the 
-   * class variable.
-=======
 
   /**
    * Initializes the AccountProxyInterface to the class variable.
->>>>>>> FT2023-307
    *
    * @param Drupal\Core\Session\AccountProxyInterface $account
    *   Stores the information of the current user.
    */
   public function __construct(AccountProxyInterface $account) {
     $this->currentUser = $account;
-<<<<<<< HEAD
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public static function create(ContainerInterface $container) {
-    return new static(
-      $container->get('current_user')
-    );
-=======
->>>>>>> FT2023-307
   }
 
   /**
@@ -87,11 +68,7 @@ class RoutingExampleController extends ControllerBase {
    */
   public function example() {
     return [
-<<<<<<< HEAD
-      '#title' => 'Hello ' . ucfirst($this->currentUser->getAccountName())
-=======
       '#title' => 'Hello ' . ucfirst($this->currentUser->getAccountName()),
->>>>>>> FT2023-307
     ];
   }
 
