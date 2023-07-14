@@ -2,8 +2,8 @@
 
 namespace Drupal\flagship_form\Plugin\Block;
 
-use Drupal\Core\Block\BlockBase;
 use Drupal\Core\Access\AccessResult;
+use Drupal\Core\Block\BlockBase;
 use Drupal\Core\Session\AccountInterface;
 
 /**
@@ -15,13 +15,13 @@ use Drupal\Core\Session\AccountInterface;
  *   category = @Translation("Flagship")
  * )
  */
-class FlagshipFormBlock extends BlockBase 
-{
+class FlagshipFormBlock extends BlockBase {
+
   /**
    * {@inheritdoc}
    */
   public function build() {
-    $form = \Drupal::formBuilder()->getForm('Drupal\flagship_form\Form\FlagshipForm'); 
+    $form = \Drupal::formBuilder()->getForm('Drupal\flagship_form\Form\FlagshipForm');
     return $form;
   }
 
@@ -35,4 +35,5 @@ class FlagshipFormBlock extends BlockBase
     }
     return AccessResult::forbidden();
   }
+
 }

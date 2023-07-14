@@ -13,8 +13,8 @@ use Drupal\Core\Block\BlockBase;
  *   category = @Translation("Flagship")
  * )
  */
-class FlagshipFormData extends BlockBase 
-{
+class FlagshipFormData extends BlockBase {
+
   /**
    * {@inheritdoc}
    */
