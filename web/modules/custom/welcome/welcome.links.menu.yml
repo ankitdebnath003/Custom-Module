@@ -1,0 +1,6 @@
+welcome.welcomeCurrentUser:
+  title: Welcome User
+  description: Welcoming the user!!!!
+  route_name: welcome.welcomeCurrentUser
+  weight: 0
+  menu_name: main
