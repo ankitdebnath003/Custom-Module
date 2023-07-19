@@ -1,0 +1,45 @@
+uuid: c7dcc5c3-7267-418e-ba46-aac50ef8cd80
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.movie_entity.body
+    - field.field.node.movie_entity.field_image
+    - field.field.node.movie_entity.field_number
+    - node.type.movie_entity
+  module:
+    - image
+    - text
+    - user
+_core:
+  default_config_hash: l0StxljfMYOhGnOpKdrCM1uj7Gf3MwKWYSIH1Bgw0qU
+id: node.movie_entity.default
+targetEntityType: node
+bundle: movie_entity
+mode: default
+content:
+  body:
+    label: above
+    type: text_default
+    weight: 101
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  field_image:
+    label: hidden
+    type: image
+    weight: 102
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  field_number:
+    label: inline
+    type: number_integer
+    weight: 101
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  links:
+    weight: 100
+    region: content
+hidden: {  }

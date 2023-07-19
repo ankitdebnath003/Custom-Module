@@ -12,6 +12,7 @@ module:
   big_pipe: 0
   block: 0
   block_content: 0
+  blog: 0
   breakpoint: 0
   ckeditor5: 0
   comment: 0
@@ -40,6 +41,7 @@ module:
   menu_link_content: 0
   menu_ui: 0
   mix: 0
+  movie_entity: 0
   mysql: 0
   node: 0
   options: 0
@@ -47,6 +49,7 @@ module:
   page_cache: 0
   path: 0
   path_alias: 0
+  phpass: 0
   plugin_example: 0
   routing_example: 0
   search: 0

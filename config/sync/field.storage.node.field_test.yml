@@ -1,16 +1,16 @@
-uuid: 7d382a54-b761-4a1a-a66e-eaaab6651ea9
+uuid: 5a5de97a-76ac-4378-a558-63b416893b29
 langcode: en
 status: true
 dependencies:
   module:
-    - custom_field
     - node
-id: node.field_color
-field_name: field_color
+id: node.field_test
+field_name: field_test
 entity_type: node
-type: rgb
-settings: {  }
-module: custom_field
+type: entity_reference
+settings:
+  target_type: node
+module: core
 locked: false
 cardinality: 1
 translatable: true

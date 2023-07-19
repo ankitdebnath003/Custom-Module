@@ -1,18 +1,18 @@
-uuid: 839303db-5997-4a3e-9879-a7c812dc13f3
+uuid: 950d9d6d-d35f-4a1f-bd3f-9bd62aaaca4f
 langcode: en
 status: true
 dependencies:
   config:
     - field.storage.node.body
-    - node.type.article
+    - node.type.blog_post
   module:
     - text
 _core:
-  default_config_hash: IjZnOLWk1Pjq3WRg2pLSA1ERh7Po7izCq_p6UztZr2c
-id: node.article.body
+  default_config_hash: K2j9z4_sF_DGVrRZ3u46FwKVVpzND5zN1ttixL8epVc
+id: node.blog_post.body
 field_name: body
 entity_type: node
-bundle: article
+bundle: blog_post
 label: Body
 description: ''
 required: false

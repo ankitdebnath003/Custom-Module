@@ -65,3 +65,4 @@
 /.vscode
 web/README.md
 /web/modules/custom/custom_hook
+/web/modules/custom/custom_menu
