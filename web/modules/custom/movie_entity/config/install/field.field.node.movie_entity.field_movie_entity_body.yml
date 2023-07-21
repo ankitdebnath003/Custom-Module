@@ -2,16 +2,15 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.node.body
     - node.type.movie_entity
   module:
     - text
-id: node.movie_entity.body
-field_name: body
+id: node.movie_entity.field_movie_entity_body
+field_name: field_movie_entity_body
 entity_type: node
 bundle: movie_entity
 label: Movie Description
-description: 'More specific information about the car brand.'
+description: 'More specific information about the Movie.'
 required: false
 translatable: true
 default_value: {  }

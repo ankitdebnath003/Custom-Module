@@ -8,20 +8,20 @@ definitions:
     expanded: false
     enabled: true
   hello_world__helloWorld:
+    menu_name: main
+    parent: ''
     weight: -49
-    menu_name: main
-    parent: ''
-    enabled: true
     expanded: false
+    enabled: true
   standard__front_page:
-    weight: -50
     menu_name: main
     parent: ''
+    weight: -50
     expanded: false
     enabled: true
   hello_world__customPage:
-    weight: -48
     menu_name: main
     parent: ''
+    weight: -48
     expanded: false
     enabled: true

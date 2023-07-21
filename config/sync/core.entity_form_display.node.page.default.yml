@@ -4,10 +4,11 @@ status: true
 dependencies:
   config:
     - field.field.node.page.body
+    - field.field.node.page.field_color
     - field.field.node.page.field_number
-    - field.field.node.page.field_test
     - node.type.page
   module:
+    - custom_field
     - path
     - text
 _core:
@@ -33,21 +34,17 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
+  field_color:
+    type: rgb_widget
+    weight: 122
+    region: content
+    settings: {  }
+    third_party_settings: {  }
   field_number:
     type: number
     weight: 121
     region: content
     settings:
-      placeholder: ''
-    third_party_settings: {  }
-  field_test:
-    type: entity_reference_autocomplete
-    weight: 122
-    region: content
-    settings:
-      match_operator: CONTAINS
-      match_limit: 10
-      size: 60
       placeholder: ''
     third_party_settings: {  }
   path:

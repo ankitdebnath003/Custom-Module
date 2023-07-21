@@ -6,9 +6,7 @@ use Drupal\Core\Entity\EntityForm;
 use Drupal\Core\Form\FormStateInterface;
 
 /**
- * Movie entity form.
- *
- * @property \Drupal\movie_entity\MovieEntityInterface $entity
+ * Form to select the movie name and the award winning year.
  */
 class MovieEntityForm extends EntityForm {
 
@@ -41,36 +39,16 @@ class MovieEntityForm extends EntityForm {
    * {@inheritdoc}
    */
   public function save(array $form, FormStateInterface $form_state) {
-    $entity = $this->entity;
+    $this->entity->set('id', $this->entity->get('uuid'));
+    $this->entity->save();
 
-    if ($entity->isNew()) {
-      // Get the last entity ID from the storage.
-      // $query = \Drupal::entityQuery('movie_entity')
-      $query = $this->entityTypeManager->getStorage('movie_entity')->getQuery()
-        ->sort('id', 'DESC')
-        ->range(0, 1);
-      $last_id = $query->execute();
-
-      // Increment the last ID and set it as the new entity ID.
-      if (!empty($last_id)) {
-        $last_id = array_shift($last_id);
-        $new_id = $last_id + 1;
-      }
-      else {
-        $new_id = 0;
-      }
-      $entity->set('id', $new_id);
-    }
-
-    $entity->save();
-
-    $message_args = ['%label' => $entity->label()];
-    $message = $entity->isNew()
+    $message_args = ['%label' => $this->entity->label()];
+    $message = $this->entity->isNew()
       ? $this->t('Created new movie entity %label.', $message_args)
       : $this->t('Updated movie entity %label.', $message_args);
 
     $this->messenger()->addStatus($message);
-    $form_state->setRedirectUrl($entity->toUrl('collection'));
+    $form_state->setRedirectUrl($this->entity->toUrl('collection'));
   }
 
 }

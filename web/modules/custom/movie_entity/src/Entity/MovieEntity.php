@@ -6,7 +6,10 @@ use Drupal\Core\Config\Entity\ConfigEntityBase;
 use Drupal\movie_entity\MovieEntityInterface;
 
 /**
- * Defines the movie entity entity type.
+ * Defines the movie entity type.
+ *
+ * This config entity is used to store the award winning films along with the
+ * years of existing movie content type.
  *
  * @ConfigEntityType(
  *   id = "movie_entity",
@@ -35,15 +38,11 @@ use Drupal\movie_entity\MovieEntityInterface;
  *     "delete-form" = "/admin/structure/movie-entity/{movie_entity}/delete"
  *   },
  *   entity_keys = {
- *     "id" = "id",
- *     "label" = "label",
+ *     "uuid" = "uuid",
  *     "movieName" = "movieName",
  *     "year" = "year",
- *     "uuid" = "uuid"
  *   },
  *   config_export = {
- *     "id",
- *     "label",
  *     "movieName",
  *     "year",
  *   }
@@ -52,28 +51,14 @@ use Drupal\movie_entity\MovieEntityInterface;
 class MovieEntity extends ConfigEntityBase implements MovieEntityInterface {
 
   /**
-   * The movie entity ID.
-   *
-   * @var string
-   */
-  protected $id;
-
-  /**
-   * The movie entity label.
-   *
-   * @var string
-   */
-  protected $label;
-
-  /**
-   * The movie entity Name.
+   * The movie Name.
    *
    * @var object
    */
   protected $movieName;
 
   /**
-   * The movie entity year.
+   * The award winning year.
    *
    * @var datetime
    */

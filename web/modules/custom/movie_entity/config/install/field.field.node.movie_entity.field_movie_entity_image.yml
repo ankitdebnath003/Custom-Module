@@ -1,19 +1,16 @@
-uuid: e57bac91-3cca-4ce4-bc3b-ff6e734b98ae
 langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.node.field_image
+    - field.storage.node.field_movie_entity_image
     - node.type.movie_entity
   module:
     - image
-_core:
-  default_config_hash: Tpp7yBt6vbwCkcSbhZMqyMqlQjjwQCkBqO0jrzzKGBs
-id: node.movie_entity.field_image
-field_name: field_image
+id: node.movie_entity.field_movie_entity_image
+field_name: field_movie_entity_image
 entity_type: node
 bundle: movie_entity
-label: 'Movie Image'
+label: Movie Image
 description: ''
 required: false
 translatable: true

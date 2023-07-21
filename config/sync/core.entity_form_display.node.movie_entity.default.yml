@@ -1,11 +1,11 @@
-uuid: 5ca05d6c-8445-48f7-a364-63f9e62d1a22
+uuid: 2d217f0e-e231-44fd-afb0-905e15d6f234
 langcode: en
 status: true
 dependencies:
   config:
-    - field.field.node.movie_entity.body
-    - field.field.node.movie_entity.field_image
-    - field.field.node.movie_entity.field_number
+    - field.field.node.movie_entity.field_movie_entity_body
+    - field.field.node.movie_entity.field_movie_entity_image
+    - field.field.node.movie_entity.field_movie_entity_number
     - image.style.thumbnail
     - node.type.movie_entity
   module:
@@ -13,33 +13,33 @@ dependencies:
     - path
     - text
 _core:
-  default_config_hash: Hw4x7X1uuqjxcBQsrVxUq2h93mMGYcYneIuypg1Hj7Q
+  default_config_hash: HxRHs48SLh8WrhvW0JbSy9y7iLSuulb_pFqb17JlreE
 id: node.movie_entity.default
 targetEntityType: node
 bundle: movie_entity
 mode: default
 content:
-  body:
-    label: hidden
-    type: text_textarea_with_summary
-    weight: 101
-    settings: {  }
-    third_party_settings: {  }
-    region: content
   created:
     type: datetime_timestamp
     weight: 10
     region: content
     settings: {  }
     third_party_settings: {  }
-  field_image:
+  field_movie_entity_body:
+    label: hidden
+    type: text_textarea_with_summary
+    weight: 101
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  field_movie_entity_image:
     label: hidden
     type: image_image
     weight: 102
     settings: {  }
     third_party_settings: {  }
     region: content
-  field_number:
+  field_movie_entity_number:
     label: hidden
     type: number
     weight: 101

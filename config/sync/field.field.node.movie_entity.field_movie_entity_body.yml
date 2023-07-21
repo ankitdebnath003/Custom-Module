@@ -1,20 +1,20 @@
-uuid: 5bc5f11c-5228-47b2-a08c-4d1444abe1de
+uuid: 4d439771-3ffa-4523-8e62-0ea89fa7e117
 langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.node.body
+    - field.storage.node.field_movie_entity_body
     - node.type.movie_entity
   module:
     - text
 _core:
-  default_config_hash: ZrjPmMhDYVz7MM6REWCtsah_Gm6B14ZlWe8dVDerHuY
-id: node.movie_entity.body
-field_name: body
+  default_config_hash: TH9xkpe_Ru3AZLJMB9NDtMkf4dPd9QV-xWeCuquZqyw
+id: node.movie_entity.field_movie_entity_body
+field_name: field_movie_entity_body
 entity_type: node
 bundle: movie_entity
 label: 'Movie Description'
-description: 'More specific information about the car brand.'
+description: 'More specific information about the Movie.'
 required: false
 translatable: true
 default_value: {  }

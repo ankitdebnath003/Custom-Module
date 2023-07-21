@@ -1,15 +1,18 @@
-uuid: 5a5de97a-76ac-4378-a558-63b416893b29
 langcode: en
 status: true
 dependencies:
   module:
     - node
-id: node.field_test
-field_name: field_test
+  enforced:
+    module:
+      - movie_entity
+id: node.field_movie_entity_number
+field_name: field_movie_entity_number
 entity_type: node
-type: entity_reference
+type: integer
 settings:
-  target_type: node
+  unsigned: false
+  size: normal
 module: core
 locked: false
 cardinality: 1
