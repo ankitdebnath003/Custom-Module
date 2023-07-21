@@ -1,0 +1,6 @@
+budget_form.settings:
+  type: config_object
+  label: 'Budget Form settings'
+  mapping:
+    budget:
+      type: number
