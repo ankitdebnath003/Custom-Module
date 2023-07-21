@@ -38,15 +38,19 @@ class HexWidget extends ColorWidgetBase {
    * {@inheritdoc}
    */
   public function massageFormValues(array $values, array $form, FormStateInterface $form_state) {
-    $color = $values[0]['color_combination'];
-    if (!Color::validateHex($color)) {
-      $form_state->setErrorByName('color_combination', 'Invalid hex value');
-    }
-
-    // Checking if the user add # in the hex value or not. If the user does not
-    // add it then add it to the string.
-    if (substr($color, 0, 1) !== '#') {
-      $values[0]['color_combination'] = '#' . $color;
+    foreach ($values as $delta => $value) {
+      $color = $value['color_combination'];
+      if ($value['color_combination'] === '') {
+        $values[$delta]['color_combination'] = NULL;
+      }
+      elseif (!Color::validateHex($value['color_combination'])) {
+        $form_state->setErrorByName('color_combination', 'Invalid hex value');
+      }
+      // Checking if the user add # in the hex value or not. If the user does
+      // not add it then add it to the string.
+      elseif (substr($color, 0, 1) !== '#') {
+        $values[$delta]['color_combination'] = '#' . $color;
+      }
     }
     return $values;
   }

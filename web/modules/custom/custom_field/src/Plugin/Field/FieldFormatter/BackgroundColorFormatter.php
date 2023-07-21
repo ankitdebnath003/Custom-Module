@@ -23,17 +23,22 @@ class BackgroundColorFormatter extends FormatterBase {
    * {@inheritdoc}
    */
   public function viewElements(FieldItemListInterface $items, $langcode) {
-    $color = $items[0]->color_combination;
+    foreach ($items as $item) {
+      $color = $item->color_combination;
 
-    // Checking if the color is in rgb then convert the rgb to its hex value.
-    if (substr($color, 0, 1) !== '#') {
-      $color = json_decode($color, TRUE);
-      $color = Color::rgbToHex($color);
+      // Checking if the colors are in RGB format.
+      if (substr($color, 0, 1) !== '#') {
+        $color = json_decode($color, TRUE);
+        $colors[] = Color::rgbToHex($color);
+      }
+      else {
+        $colors[] = $color;
+      }
     }
 
-    $build = [
+    $build[] = [
       '#theme' => 'custom_field',
-      '#dynamic_color' => $color,
+      '#dynamic_color' => $colors,
       '#attached' => [
         'library' => [
           'custom_field/custom-field',

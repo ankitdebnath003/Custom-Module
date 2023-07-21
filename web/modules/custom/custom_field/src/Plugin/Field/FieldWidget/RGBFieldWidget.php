@@ -2,6 +2,7 @@
 
 namespace Drupal\custom_field\Plugin\Field\FieldWidget;
 
+use Drupal\Component\Serialization\Json;
 use Drupal\Core\Field\FieldItemListInterface;
 use Drupal\Core\Form\FormStateInterface;
 
@@ -22,8 +23,7 @@ class RGBFieldWidget extends ColorWidgetBase {
    * {@inheritdoc}
    */
   public function formElement(FieldItemListInterface $items, $delta, Array $element, Array &$form, FormStateInterface $form_state) {
-    $color = $this->convertColor($items, $delta, 'rgb');
-
+    $colors = $this->convertColor($items, $delta, 'rgb') ?? [];
     $element['color_combination'] = [
       '#access' => $this->access,
       '#attributes' => [
@@ -32,14 +32,13 @@ class RGBFieldWidget extends ColorWidgetBase {
         ],
       ],
     ];
-
     $element['color_combination']['red'] = [
       '#type' => 'number',
       '#title' => $this->t('Red'),
       '#size' => 15,
       '#min' => 0,
       '#max' => 255,
-      '#default_value' => $color['red'] ?? '',
+      '#default_value' => $colors['red'] ?? '',
     ];
 
     $element['color_combination']['green'] = [
@@ -48,7 +47,7 @@ class RGBFieldWidget extends ColorWidgetBase {
       '#size' => 15,
       '#min' => 0,
       '#max' => 255,
-      '#default_value' => $color['green'] ?? '',
+      '#default_value' => $colors['green'] ?? '',
     ];
 
     $element['color_combination']['blue'] = [
@@ -57,7 +56,7 @@ class RGBFieldWidget extends ColorWidgetBase {
       '#size' => 15,
       '#min' => 0,
       '#max' => 255,
-      '#default_value' => $color['blue'] ?? '',
+      '#default_value' => $colors['blue'] ?? '',
     ];
 
     $element['#theme_wrappers'] = ['container', 'form_element'];
@@ -71,30 +70,47 @@ class RGBFieldWidget extends ColorWidgetBase {
   /**
    * This function is used to validate the RGB color.
    *
-   * @param array $color
+   * @param array $colors
    *   Stores the red, green and blue colors.
-   * @param \Drupal\Core\Form\FormStateInterface $form_state
-   *   Stores the form state.
+   *
+   * @return string|bool
+   *   Returns invalid color name if any otherwise TRUE.
    */
-  public function validateColor(array $color, FormStateInterface $form_state) {
-    if (!($color['red'] >= 0 && $color['red'] <= 255)) {
-      $form_state->setErrorByName('red', $this->t("Red Color must be in the range 0 to 255."));
+  public function validateColor(array $colors) {
+    if (!($colors[0] >= 0 && $colors[0] <= 255)) {
+      return 'red';
     }
-    elseif (!($color['green'] >= 0 && $color['green'] <= 255)) {
-      $form_state->setErrorByName('green', $this->t("Green Color must be in the range 0 to 255."));
+    elseif (!($colors[1] >= 0 && $colors[1] <= 255)) {
+      return 'green';
     }
-    elseif (!($color['blue'] >= 0 && $color['blue'] <= 255)) {
-      $form_state->setErrorByName('blue', $this->t("Blue Color must be in the range 0 to 255."));
+    elseif (!($colors[2] >= 0 && $colors[2] <= 255)) {
+      return 'blue';
     }
+    return TRUE;
   }
 
   /**
    * {@inheritdoc}
    */
   public function massageFormValues(array $values, array $form, FormStateInterface $form_state) {
-    $color = $values[0]['color_combination'];
-    $this->validateColor($color, $form_state);
-    return json_encode($color);
+    foreach ($values as $delta => $value) {
+      $rgb = [
+        $value['color_combination']['red'],
+        $value['color_combination']['green'],
+        $value['color_combination']['blue'],
+      ];
+      $color = $this->validateColor($rgb);
+      if ($value['color_combination']['red'] === '' && $value['color_combination']['green'] === '' && $value['color_combination']['blue'] === '') {
+        $values[$delta]['color_combination'] = NULL;
+      }
+      elseif ($color !== TRUE) {
+        $form_state->setErrorByName($this->fieldDefinition->getName(), $this->t('@color color is invalid', ['@color' => $color]));
+      }
+      else {
+        $values[$delta]['color_combination'] = Json::encode($value['color_combination']);
+      }
+    }
+    return $values;
   }
 
 }
