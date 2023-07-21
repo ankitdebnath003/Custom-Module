@@ -93,18 +93,25 @@ class ColorWidgetBase extends WidgetBase {
    */
   public function convertColor(FieldItemListInterface $items, $delta, string $type) {
     $color = $items[$delta]->color_combination ?? '';
-    if ($type === 'hex') {
-      if (substr($color, 0, 1) !== '#' && $color) {
-        $color = json_decode($color, TRUE);
-        return Color::rgbToHex($color);
-      }
+
+    // Checking if the type is of hex and also if the colors are stored in the
+    // hex format or not.
+    if ($type === 'hex' && $color && substr($color, 0, 1) !== '#') {
+      $color = json_decode($color, TRUE);
+      return Color::rgbToHex($color);
     }
+
+    // Checking if the type is of rgb and also if the colors are stored in the
+    // rgb format or not.
     elseif ($type === 'rgb') {
-      if (substr($color, 0, 1) === '#' && $color) {
+      if ($color && substr($color, 0, 1) === '#') {
         return Color::hexToRgb($color);
       }
       return json_decode($color, TRUE);
     }
+
+    // If the type is of hex and the values are stored in hex format also then
+    // return the hex value as it is.
     return $color;
   }
 

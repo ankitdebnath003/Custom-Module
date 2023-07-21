@@ -6,7 +6,7 @@ use Drupal\Core\Field\FieldItemListInterface;
 use Drupal\Core\Field\FormatterBase;
 
 /**
- * This field formatter is showing the colors as a text and then the color code.
+ * This field formatter is showing the colors as a text of the color code.
  *
  * @FieldFormatter(
  *   id = "color_code",
@@ -22,27 +22,30 @@ class ColorCodeFormatter extends FormatterBase {
    * {@inheritdoc}
    */
   public function viewElements(FieldItemListInterface $items, $langcode) {
-    $color = $items[0]->color_combination;
+    foreach ($items as $item) {
+      $color = $item->color_combination;
 
-    // Checking if the color code is in hex format or not.
-    if (substr($color, 0, 1) === '#') {
-      return [
-        '#markup' => $this->t('Hex Code : @hex', [
-          '@hex' => $color,
-        ]),
-      ];
+      // Checking if the color is in Hex.
+      if (substr($color, 0, 1) === '#') {
+        $elements[] = [
+          '#markup' => $this->t('Hex Code : @hex', [
+            '@hex' => $color,
+          ]),
+        ];
+      }
+      else {
+        // Converting the color code to array of RGB.
+        $color = json_decode($color, TRUE);
+
+        $elements[] = [
+          '#markup' => $this->t('Red: @red, Green: @green, Blue: @blue', [
+            '@red' => $color['red'],
+            '@green' => $color['green'],
+            '@blue' => $color['blue'],
+          ]),
+        ];
+      }
     }
-
-    // Converting the color code to array of RGB.
-    $color = json_decode($color, TRUE);
-    $elements[] = [
-      '#markup' => $this->t('Red: @red, Green: @green, Blue: @blue', [
-        '@red' => $color['red'],
-        '@green' => $color['green'],
-        '@blue' => $color['blue'],
-      ]),
-    ];
-
     return $elements;
   }
 
