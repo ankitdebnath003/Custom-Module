@@ -22,31 +22,37 @@ class ColorCodeFormatter extends FormatterBase {
    * {@inheritdoc}
    */
   public function viewElements(FieldItemListInterface $items, $langcode) {
-    foreach ($items as $item) {
-      $color = $item->color_combination;
+    // Checking if the Color field has any value or not.
+    if ($items->color_combination) {
+      foreach ($items as $item) {
+        $color = $item->color_combination;
 
-      // Checking if the color is in Hex.
-      if (substr($color, 0, 1) === '#') {
-        $elements[] = [
-          '#markup' => $this->t('Hex Code : @hex', [
-            '@hex' => $color,
-          ]),
-        ];
-      }
-      else {
-        // Converting the color code to array of RGB.
-        $color = json_decode($color, TRUE);
+        // Checking if the color is in Hex.
+        if (substr($color, 0, 1) === '#') {
+          $elements[] = [
+            '#markup' => $this->t('Hex Code : @hex', [
+              '@hex' => $color,
+            ]),
+          ];
+        }
+        else {
+          // Converting the color code to array of RGB.
+          $color = json_decode($color, TRUE);
 
-        $elements[] = [
-          '#markup' => $this->t('Red: @red, Green: @green, Blue: @blue', [
-            '@red' => $color['red'],
-            '@green' => $color['green'],
-            '@blue' => $color['blue'],
-          ]),
-        ];
+          $elements[] = [
+            '#markup' => $this->t('Red: @red, Green: @green, Blue: @blue', [
+              '@red' => $color['red'],
+              '@green' => $color['green'],
+              '@blue' => $color['blue'],
+            ]),
+          ];
+        }
       }
+      return $elements;
     }
-    return $elements;
+    return [
+      '#markup' => NULL,
+    ];
   }
 
 }
