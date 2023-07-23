@@ -5,6 +5,7 @@
  * Implements some hooks.
  */
 
+use Drupal\budget_form\Event\BudgetEvent;
 use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
 use Drupal\Core\Entity\EntityInterface;
 
@@ -19,20 +20,17 @@ function budget_form_toolbar_alter(&$items) {
  * Implements hook_ENTITY_TYPE_view().
  *
  * Fetch the value of the current node's movie price field and also movie budget
- * from the config factory and then show the message accordingly.
+ * from the config factory and then dispatch the budget event.
  */
 function budget_form_node_view(array &$build, EntityInterface $entity, EntityViewDisplayInterface $display, $view_mode) {
-  if ($entity->bundle() === 'movie_entity') {
+  if ($entity->bundle() === 'movie_entity' && \Drupal::routeMatch()->getRouteName() == 'entity.node.canonical') {
     $budget = \Drupal::configFactory()->get('movie_budget_form.settings')->get('budget');
     $price = $entity->get('field_movie_entity_number')->getValue()[0]['value'];
-    if ($budget > $price) {
-      \Drupal::messenger()->addMessage('The movie is under budget');
-    }
-    elseif ($budget < $price) {
-      \Drupal::messenger()->addMessage('The movie is over budget');
-    }
-    else {
-      \Drupal::messenger()->addMessage('The movie is within budget');
-    }
+
+    // Creating the object of Custom Budget Event with the values and then
+    // dispatch the event.
+    $event = new BudgetEvent($budget, $price);
+    $event_dispatcher = \Drupal::service('event_dispatcher');
+    $event_dispatcher->dispatch($event, BudgetEvent::EVENT);
   }
 }
