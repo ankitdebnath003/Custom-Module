@@ -5,15 +5,6 @@
  * Implements hook.
  */
 
-use Drupal\Core\Cache\Cache;
-
-/**
- * Implements hook_install().
- */
-function budget_form_install() {
-  Cache::invalidateTags(['node_view']);
-}
-
 /**
  * Implements hook_uninstall().
  */
