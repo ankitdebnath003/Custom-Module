@@ -2,6 +2,7 @@
 
 namespace Drupal\budget_form\Form;
 
+use Drupal\Core\Cache\Cache;
 use Drupal\Core\Form\ConfigFormBase;
 use Drupal\Core\Form\FormStateInterface;
 
@@ -21,7 +22,7 @@ class MovieBudgetForm extends ConfigFormBase {
    * {@inheritdoc}
    */
   public function getFormId() {
-    return MovieBudgetForm::CONFIG;
+    return 'movie_budget_form_settings';
   }
 
   /**
@@ -48,6 +49,7 @@ class MovieBudgetForm extends ConfigFormBase {
    * {@inheritdoc}
    */
   public function submitForm(array &$form, FormStateInterface $form_state) {
+    Cache::invalidateTags(['node_view']);
     $this->config(MovieBudgetForm::CONFIG)
       ->set('budget', $form_state->getValue('budget'))
       ->save();
