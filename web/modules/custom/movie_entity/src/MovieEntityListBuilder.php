@@ -26,8 +26,8 @@ class MovieEntityListBuilder extends ConfigEntityListBuilder {
     /** @var \Drupal\movie_entity\MovieEntityInterface $entity */
     $id = $entity->get('movieName')[0]['target_id'];
     $item = \Drupal::entityTypeManager()->getStorage('node')->load($id);
-    $row['label'] = $item->label() ?? '';
-    $row['id'] = $entity->get('year');
+    $row['movieName'] = $item->label() ?? '';
+    $row['year'] = $entity->get('year');
     return $row + parent::buildRow($entity);
   }
 

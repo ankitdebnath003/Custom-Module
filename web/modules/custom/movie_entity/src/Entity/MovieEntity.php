@@ -38,17 +38,26 @@ use Drupal\movie_entity\MovieEntityInterface;
  *     "delete-form" = "/admin/structure/movie-entity/{movie_entity}/delete"
  *   },
  *   entity_keys = {
+ *     "id" = "id",
  *     "uuid" = "uuid",
  *     "movieName" = "movieName",
  *     "year" = "year",
  *   },
  *   config_export = {
+ *     "id",
  *     "movieName",
  *     "year",
  *   }
  * )
  */
 class MovieEntity extends ConfigEntityBase implements MovieEntityInterface {
+
+  /**
+   * The movie entity id.
+   *
+   * @var int
+   */
+  protected $id;
 
   /**
    * The movie Name.

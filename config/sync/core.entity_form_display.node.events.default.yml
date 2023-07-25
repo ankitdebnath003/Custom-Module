@@ -1,54 +1,51 @@
-uuid: f7c60f56-3086-4678-a94e-844c88ece9b9
+uuid: 6b4350fd-fb59-4432-9876-6b943ce799a4
 langcode: en
 status: true
 dependencies:
   config:
-    - field.field.node.movie_entity.field_movie_entity_body
-    - field.field.node.movie_entity.field_movie_entity_image
-    - field.field.node.movie_entity.field_movie_entity_number
-    - image.style.thumbnail
-    - node.type.movie_entity
+    - field.field.node.events.body
+    - field.field.node.events.field_event_date
+    - field.field.node.events.field_event_type
+    - node.type.events
   module:
-    - image
+    - datetime
     - path
     - text
-_core:
-  default_config_hash: HxRHs48SLh8WrhvW0JbSy9y7iLSuulb_pFqb17JlreE
-id: node.movie_entity.default
+id: node.events.default
 targetEntityType: node
-bundle: movie_entity
+bundle: events
 mode: default
 content:
+  body:
+    type: text_textarea_with_summary
+    weight: 121
+    region: content
+    settings:
+      rows: 9
+      summary_rows: 3
+      placeholder: ''
+      show_summary: false
+    third_party_settings: {  }
   created:
     type: datetime_timestamp
     weight: 10
     region: content
     settings: {  }
     third_party_settings: {  }
-  field_movie_entity_body:
-    label: hidden
-    type: text_textarea_with_summary
-    weight: 101
+  field_event_date:
+    type: datetime_default
+    weight: 123
+    region: content
     settings: {  }
     third_party_settings: {  }
+  field_event_type:
+    type: text_textfield
+    weight: 122
     region: content
-  field_movie_entity_image:
-    label: hidden
-    type: image_image
-    weight: 102
-    settings: {  }
+    settings:
+      size: 60
+      placeholder: ''
     third_party_settings: {  }
-    region: content
-  field_movie_entity_number:
-    label: hidden
-    type: number
-    weight: 101
-    settings: {  }
-    third_party_settings: {  }
-    region: content
-  links:
-    weight: 100
-    region: content
   path:
     type: path
     weight: 30
@@ -57,24 +54,24 @@ content:
     third_party_settings: {  }
   promote:
     type: boolean_checkbox
-    settings:
-      display_label: true
     weight: 15
     region: content
+    settings:
+      display_label: true
     third_party_settings: {  }
   status:
     type: boolean_checkbox
-    settings:
-      display_label: true
     weight: 120
     region: content
+    settings:
+      display_label: true
     third_party_settings: {  }
   sticky:
     type: boolean_checkbox
-    settings:
-      display_label: true
     weight: 16
     region: content
+    settings:
+      display_label: true
     third_party_settings: {  }
   title:
     type: string_textfield
@@ -87,11 +84,11 @@ content:
   uid:
     type: entity_reference_autocomplete
     weight: 5
+    region: content
     settings:
       match_operator: CONTAINS
-      size: '60'
-      placeholder: ''
       match_limit: 10
-    region: content
+      size: 60
+      placeholder: ''
     third_party_settings: {  }
 hidden: {  }

@@ -14,6 +14,7 @@ module:
   blog: 0
   breakpoint: 0
   budget_form: 0
+  cache_form: 0
   ckeditor5: 0
   comment: 0
   config: 0
@@ -26,7 +27,6 @@ module:
   datetime: 0
   dblog: 0
   devel: 0
-  devel_generate: 0
   dynamic_page_cache: 0
   editor: 0
   field: 0
@@ -41,7 +41,6 @@ module:
   link: 0
   menu_link_content: 0
   menu_ui: 0
-  mix: 0
   movie_entity: 0
   multiple_fields_remove_button: 0
   mysql: 0
