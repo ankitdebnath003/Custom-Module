@@ -1,0 +1,5 @@
+name: Plugin Example
+type: module
+description: It is an example of plugin
+package: Custom Module
+core_version_requirement: ^9 || ^10

@@ -1,0 +1,43 @@
+<?php
+
+/**
+ * @file
+ * Implements some hooks.
+ */
+
+use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
+use Drupal\Core\Entity\EntityInterface;
+
+/**
+ * Implements hook_toolbar_alter().
+ */
+function budget_form_toolbar_alter(&$items) {
+  $items['administration']['#attached']['library'][] = 'budget_form/budget-form-css';
+}
+
+/**
+ * Implements hook_ENTITY_TYPE_view().
+ *
+ * Fetch the value of the current node's movie price field and also movie budget
+ * from the config factory and then show the message accordingly.
+ */
+function budget_form_node_view(array &$build, EntityInterface $entity, EntityViewDisplayInterface $display, $view_mode) {
+  if ($entity->bundle() === 'movie_entity') {
+    $budget = \Drupal::configFactory()->get('movie_budget_form.settings')->get('budget');
+
+    if ($budget && $price = $entity->get('field_movie_entity_number')->getValue()[0]['value']) {
+      if ($budget > $price) {
+        $markup = '<p>The movie is under budget</p>';
+      }
+      elseif ($budget < $price) {
+        $markup = '<p>The movie is over budget</p>';
+      }
+      else {
+        $markup = '<p>The movie is within budget</p>';
+      }
+      $build[] = [
+        '#markup' => $markup,
+      ];
+    }
+  }
+}

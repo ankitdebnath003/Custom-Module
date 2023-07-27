@@ -1,0 +1,21 @@
+uuid: efacdd3d-cb68-4a9a-b8c3-df6c2309e6b0
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_color
+    - node.type.page
+  module:
+    - custom_field
+id: node.page.field_color
+field_name: field_color
+entity_type: node
+bundle: page
+label: Color
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: rgb

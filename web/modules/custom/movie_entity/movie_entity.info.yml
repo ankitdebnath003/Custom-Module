@@ -1,0 +1,8 @@
+name: Movie Custom Entity
+type: module
+description: A custom module to create Movie content type
+package: Custom Module
+core_version_requirement: ^9 || ^10
+dependencies:
+  - node
+configure: entity.movie_custom_entity.collection

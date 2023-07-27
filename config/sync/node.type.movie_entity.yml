@@ -1,0 +1,19 @@
+uuid: 6bfcf57f-f078-442b-8c99-ba1696098ba2
+langcode: en
+status: true
+dependencies:
+  module:
+    - menu_ui
+third_party_settings:
+  menu_ui:
+    available_menus: {  }
+    parent: 'main:'
+_core:
+  default_config_hash: UqNheGGXBlaRthRODTVcsBu4LOJ1zUyyK4LdWc5ABis
+name: Movie
+type: movie_entity
+description: 'Custom entity create for Movies.'
+help: ''
+new_revision: false
+preview_mode: 1
+display_submitted: true

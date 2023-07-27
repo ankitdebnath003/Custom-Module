@@ -1,0 +1,9 @@
+services:
+  movie_entity.uninstall_validator:
+    class: Drupal\movie_entity\MovieUninstallValidator
+    arguments:
+      - '@string_translation'
+      - '@entity_type.manager'
+    tags:
+      - { name: module_install.uninstall_validator }
+    lazy: true

@@ -1,0 +1,23 @@
+field.storage_settings.custom_field_example:
+  type: mapping
+  label: Example storage settings
+  mapping:
+    foo:
+      type: string
+      label: Foo
+
+field.field_settings.custom_field_example:
+  type: mapping
+  label: Example field settings
+  mapping:
+    bar:
+      type: string
+      label: Bar
+
+field.value.custom_field_example:
+  type: mapping
+  label: Default value
+  mapping:
+    value:
+      type: label
+      label: Value

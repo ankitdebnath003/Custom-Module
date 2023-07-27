@@ -1,0 +1,7 @@
+welcome.welcomeCurrentUser:
+  path: '/welcome-user'
+  defaults: 
+    _controller: '\Drupal\welcome\Controller\WelcomeController::welcomeCurrentUser'
+    _title: 'This is the Welcome page'
+  requirements:
+    _permission: 'welcome permission'
