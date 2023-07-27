@@ -4,6 +4,7 @@ namespace Drupal\movie_entity;
 
 use Drupal\Core\Config\Entity\ConfigEntityListBuilder;
 use Drupal\Core\Entity\EntityInterface;
+use Drupal\node\Entity\Node;
 
 /**
  * Provides a listing of movie entities.
@@ -24,9 +25,18 @@ class MovieEntityListBuilder extends ConfigEntityListBuilder {
    */
   public function buildRow(EntityInterface $entity) {
     /** @var \Drupal\movie_entity\MovieEntityInterface $entity */
-    $id = $entity->get('movieName')[0]['target_id'];
-    $item = \Drupal::entityTypeManager()->getStorage('node')->load($id);
-    $row['movieName'] = $item->label() ?? '';
+    $ids = $entity->get('movieName') ?? [];
+    $movies = [];
+
+    // Fetching each movie's names.
+    foreach ($ids as $id) {
+      $movie = Node::load($id['target_id']);
+      if ($movie) {
+        $movies[] = $movie->label();
+      }
+    }
+
+    $row['movieName'] = implode(', ', $movies);
     $row['year'] = $entity->get('year');
     return $row + parent::buildRow($entity);
   }
