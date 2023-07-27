@@ -14,14 +14,25 @@ class MovieEntityForm extends EntityForm {
    * {@inheritdoc}
    */
   public function form(array $form, FormStateInterface $form_state) {
-    $id = $this->entity->get('movieName')[0]['target_id'] ?? '';
+    $ids = $this->entity->get('movieName') ?? [];
+    $movies = [];
+
+    // Fetch each movie node's object.
+    foreach ($ids as $id) {
+      $movie = $this->entityTypeManager->getStorage('node')->load($id['target_id']);
+      if ($movie) {
+        $movies[] = $movie;
+      }
+    }
+
     $form = parent::form($form, $form_state);
     $form['movieName'] = [
       '#type' => 'entity_autocomplete',
       '#title' => $this->t('Movie Name'),
+      '#description' => $this->t('You can enter multiple values separated by , (Ex : movie1, movie2)'),
       '#target_type' => 'node',
       '#selection_settings' => ['target_bundles' => ['movie_entity']],
-      '#default_value' => $this->entityTypeManager->getStorage('node')->load($id) ?? '',
+      '#default_value' => $movies,
       '#tags' => TRUE,
     ];
     $form['year'] = [
