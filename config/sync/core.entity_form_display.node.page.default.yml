@@ -5,10 +5,12 @@ dependencies:
   config:
     - field.field.node.page.body
     - field.field.node.page.field_color
+    - field.field.node.page.field_date
     - field.field.node.page.field_number
     - node.type.page
   module:
     - custom_field
+    - datetime
     - path
     - text
 _core:
@@ -37,6 +39,12 @@ content:
   field_color:
     type: color_picker
     weight: 122
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_date:
+    type: datetime_default
+    weight: 123
     region: content
     settings: {  }
     third_party_settings: {  }

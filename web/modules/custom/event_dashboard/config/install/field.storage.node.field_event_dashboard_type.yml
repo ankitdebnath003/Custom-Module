@@ -1,17 +1,20 @@
-uuid: 90be826e-2024-4a3c-9ff5-f6450667e208
 langcode: en
 status: true
 dependencies:
   module:
-    - datetime
+    - file
+    - image
     - node
-id: node.field_event_date
-field_name: field_event_date
+  enforced:
+    module:
+      - event_dashboard
+id: node.field_event_dashboard_type
+field_name: field_event_dashboard_type
 entity_type: node
-type: datetime
+type: text
 settings:
-  datetime_type: datetime
-module: datetime
+  max_length: 255
+module: text
 locked: false
 cardinality: 1
 translatable: true

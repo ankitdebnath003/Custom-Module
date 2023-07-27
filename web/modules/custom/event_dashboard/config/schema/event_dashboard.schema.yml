@@ -1,0 +1,12 @@
+event_dashboard.event_dashboard.*:
+  type: config_entity
+  label: Event Dashboard
+  mapping:
+    uuid:
+      type: string
+    Event Details:
+      type: text_with_summary
+    Event Type:
+      type: text
+    Event Date:
+      type: datetime

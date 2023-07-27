@@ -1,0 +1,26 @@
+uuid: 89010ba1-08c8-4fa7-921a-1a31ca10bf1c
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_event_dashboard_details
+    - node.type.event_dashboard
+  module:
+    - text
+_core:
+  default_config_hash: tBV6jWS4B9ciW3NEtHzaAPfXhW94P_zxwV8TQsnuLCs
+id: node.event_dashboard.field_event_dashboard_details
+field_name: field_event_dashboard_details
+entity_type: node
+bundle: event_dashboard
+label: 'Event Details'
+description: 'More information about the Event.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  display_summary: true
+  required_summary: false
+  allowed_formats: {  }
+field_type: text_with_summary

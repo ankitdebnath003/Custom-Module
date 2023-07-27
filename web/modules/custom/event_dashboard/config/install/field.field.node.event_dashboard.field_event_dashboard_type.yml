@@ -1,16 +1,15 @@
-uuid: 0ce4bf0a-4a78-4955-9b37-69356a2ba915
 langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.node.field_event_type
-    - node.type.events
+    - field.storage.node.field_event_dashboard_type
+    - node.type.event_dashboard
   module:
-    - text
-id: node.events.field_event_type
-field_name: field_event_type
+    - image
+id: node.event_dashboard.field_event_dashboard_type
+field_name: field_event_dashboard_type
 entity_type: node
-bundle: events
+bundle: event_dashboard
 label: 'Event Type'
 description: ''
 required: false

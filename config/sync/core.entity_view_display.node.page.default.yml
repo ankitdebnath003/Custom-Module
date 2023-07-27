@@ -5,10 +5,12 @@ dependencies:
   config:
     - field.field.node.page.body
     - field.field.node.page.field_color
+    - field.field.node.page.field_date
     - field.field.node.page.field_number
     - node.type.page
   module:
     - custom_field
+    - datetime
     - text
     - user
 _core:
@@ -31,6 +33,15 @@ content:
     settings: {  }
     third_party_settings: {  }
     weight: 103
+    region: content
+  field_date:
+    type: datetime_default
+    label: above
+    settings:
+      timezone_override: ''
+      format_type: medium
+    third_party_settings: {  }
+    weight: 104
     region: content
   field_number:
     type: number_integer

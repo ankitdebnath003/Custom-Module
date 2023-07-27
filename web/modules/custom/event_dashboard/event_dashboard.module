@@ -1,0 +1,21 @@
+<?php
+
+/**
+ * @file
+ * Primary module hooks for Event Dashboard module.
+ */
+
+/**
+ * Implements hook_theme().
+ */
+function event_dashboard_theme($existing, $type, $theme, $path) {
+  return [
+    'event_dashboard' => [
+      'variables' => [
+        'years' => NULL,
+        'quarters' => NULL,
+        'event_types' => NULL,
+      ],
+    ],
+  ];
+}

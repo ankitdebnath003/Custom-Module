@@ -1,0 +1,47 @@
+uuid: 3e6cb041-6f34-4110-a610-59c7a2c06a02
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.event_dashboard.field_event_dashboard_date
+    - field.field.node.event_dashboard.field_event_dashboard_details
+    - field.field.node.event_dashboard.field_event_dashboard_type
+    - node.type.event_dashboard
+  module:
+    - datetime
+    - text
+    - user
+_core:
+  default_config_hash: QwVms-x_7Vq9564OU7QdaYXsLqMFsQQRqwoGKTfdVYo
+id: node.event_dashboard.default
+targetEntityType: node
+bundle: event_dashboard
+mode: default
+content:
+  field_event_dashboard_date:
+    type: datetime_default
+    label: above
+    settings:
+      timezone_override: ''
+      format_type: medium
+    third_party_settings: {  }
+    weight: 103
+    region: content
+  field_event_dashboard_details:
+    label: above
+    type: text_default
+    weight: 101
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  field_event_dashboard_type:
+    label: inline
+    type: text_default
+    weight: 101
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  links:
+    weight: 100
+    region: content
+hidden: {  }

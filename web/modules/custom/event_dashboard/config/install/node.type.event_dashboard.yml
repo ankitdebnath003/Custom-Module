@@ -1,0 +1,13 @@
+langcode: en
+status: true
+third_party_settings:
+  menu_ui:
+    available_menus: {  }
+    parent: 'main:'
+name: 'Event'
+type: event_dashboard
+description: 'Custom entity create for Movies.'
+help: ''
+new_revision: false
+preview_mode: 1
+display_submitted: true
