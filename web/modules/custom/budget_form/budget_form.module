@@ -1,0 +1,13 @@
+<?php
+
+/**
+ * @file
+ * Implements some hooks.
+ */
+
+/**
+ * Implements hook_toolbar_alter().
+ */
+function budget_form_toolbar_alter(&$items) {
+  $items['administration']['#attached']['library'][] = 'budget_form/budget-form-css';
+}

@@ -1,0 +1,18 @@
+<div class="title">
+    <div class="left-bar"></div>
+    <p class="middle">Flagship Programmes</p>
+    <div class="right-bar"></div>
+</div>
+
+<div class='flagship-container'>
+{% for item in data %}
+    <div class='flagship-column'>
+        <h3>{{item.group_name}}</h3>
+        <div class="bar"></div>
+        <h4>{{item.first_label}}</h4>
+        <h5>{{item.first_value}}</h5>
+        <h4>{{item.second_label}}</h4>
+        <h5>{{item.second_value}}</h5>
+    </div>
+{% endfor %}
+</div>

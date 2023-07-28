@@ -1,0 +1,5 @@
+name: Flagship Form
+type: module
+description: This is a form for Flagship Programmes.
+package: Custom Module
+core_version_requirement: ^9 || ^10

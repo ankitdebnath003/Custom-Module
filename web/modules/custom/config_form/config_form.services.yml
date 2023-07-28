@@ -1,0 +1,3 @@
+services:
+  config_form.validator:
+    class: Drupal\config_form\FormValidator

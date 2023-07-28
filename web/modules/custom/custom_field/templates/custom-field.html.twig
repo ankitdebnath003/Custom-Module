@@ -1,0 +1,20 @@
+<style>
+
+{% for key, value in dynamic_color %}
+
+  #dynamic-color-{{ key }} { 
+    background-color: {{ value }}; 
+    padding: 20px;
+  }
+
+{% endfor %}
+
+</style>
+
+{% for key, value in dynamic_color %}
+
+  <div>
+    <p id="dynamic-color-{{ key }}">Custom Text With The Background Color Picked By The User.</p>
+  </div>
+
+{% endfor %}

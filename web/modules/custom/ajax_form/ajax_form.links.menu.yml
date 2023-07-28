@@ -1,0 +1,6 @@
+ajax_form.buildForm:
+  title: Ajax Form
+  description: Add config form using Ajax!!!!
+  route_name: ajax_form.buildForm
+  weight: 0
+  menu_name: main

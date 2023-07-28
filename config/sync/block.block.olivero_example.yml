@@ -1,0 +1,20 @@
+uuid: aecbec3d-db34-4513-8d36-8a429a9cbca1
+langcode: en
+status: true
+dependencies:
+  module:
+    - plugin_example
+  theme:
+    - olivero
+id: olivero_example
+theme: olivero
+region: hero
+weight: 0
+provider: null
+plugin: plugin_example_example
+settings:
+  id: plugin_example_example
+  label: Example
+  label_display: '0'
+  provider: plugin_example
+visibility: {  }

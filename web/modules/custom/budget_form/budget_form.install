@@ -1,0 +1,13 @@
+<?php
+
+/**
+ * @file
+ * Implements hook.
+ */
+
+/**
+ * Implements hook_uninstall().
+ */
+function budget_form_uninstall() {
+  \Drupal::configFactory()->getEditable('movie_budget_form.settings')->delete();
+}
