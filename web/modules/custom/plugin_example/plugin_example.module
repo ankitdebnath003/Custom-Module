@@ -1,0 +1,25 @@
+<?php
+
+/**
+ * @file
+ * This module file redirect user on login.
+ */
+
+use Drupal\Core\Url;
+
+/**
+ * This is used to call the custom function when hit the submit button.
+ *
+ * Implements hook_form_FORM_ID_alter().
+ */
+function plugin_example_form_user_login_form_alter(&$form, $form_state, $form_id) {
+  $form['#submit'][] = 'plugin_example_redirect_url';
+}
+
+/**
+ * This function called to redirect the page.
+ */
+function plugin_example_redirect_url($form, $form_state) {
+  $url = Url::fromRoute('plugin_example.example');
+  $form_state->setRedirectUrl($url);
+}

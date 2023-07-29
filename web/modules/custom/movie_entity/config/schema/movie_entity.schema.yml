@@ -1,0 +1,12 @@
+movie_entity.movie_entity.*:
+  type: config_entity
+  label: Movie entity
+  mapping:
+    uuid:
+      type: string
+    Movie Description:
+      type: text_with_summary
+    Movie Image:
+      type: image
+    Movie Price:
+      type: number

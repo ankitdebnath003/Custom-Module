@@ -1,0 +1,25 @@
+langcode: en
+status: true
+dependencies:
+    config:
+        - core.entity_view_mode.node.teaser
+        - field.field.node.event_dashboard.field_event_dashboard_details
+        - node.type.event_dashboard
+    module:
+        - text
+        - user
+id: node.event_dashboard.teaser
+targetEntityType: node
+bundle: event_dashboard
+mode: teaser
+content:
+    field_event_dashboard_details:
+        label: hidden
+        type: text_summary_or_trimmed
+        weight: 101
+        settings:
+            trim_length: 600
+        third_party_settings: {  }
+    links:
+        weight: 100
+hidden: {  }

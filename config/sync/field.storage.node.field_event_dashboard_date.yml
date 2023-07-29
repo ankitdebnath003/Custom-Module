@@ -1,0 +1,25 @@
+uuid: 34d5b9cd-0f13-4953-9ec5-69f0450210b2
+langcode: en
+status: true
+dependencies:
+  module:
+    - datetime
+    - node
+  enforced:
+    module:
+      - event_dashboard
+_core:
+  default_config_hash: tiuqRQIhVd8zQtkKcCGulmdaVbkm86n5wgJKB7hf3ww
+id: node.field_event_dashboard_date
+field_name: field_event_dashboard_date
+entity_type: node
+type: datetime
+settings:
+  datetime_type: date
+module: datetime
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

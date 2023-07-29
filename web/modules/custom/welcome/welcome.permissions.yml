@@ -1,0 +1,4 @@
+welcome permission:
+  title: 'Administer Welcome'
+  description: 'Allows users to administer Welcome.'
+  restrict access: true

@@ -1,0 +1,5 @@
+name: Routing Example Module
+description: This is our Custom Routing module
+core_version_requirement: 10.x
+type: module
+package: Custom Modules

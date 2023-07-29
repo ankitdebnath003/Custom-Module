@@ -1,0 +1,10 @@
+event-dashboard:
+  version: 1.x
+  css:
+    theme:
+      css/style.css: {}
+term:
+  version: 1.x
+  css:
+    theme:
+      css/term.style.css: {}

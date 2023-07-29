@@ -1,0 +1,23 @@
+event_dashboard.event:
+  path: '/event-dashboard'
+  defaults:
+    _title: 'Event Dashboard'
+    _controller: '\Drupal\event_dashboard\Controller\EventDashboardController::eventDetails'
+  requirements:
+    _permission: 'access content'
+
+event_dashboard.term:
+  path: '/term'
+  defaults:
+    _title: 'Term'
+    _form: 'Drupal\event_dashboard\Form\TermForm'
+  requirements:
+    _permission: 'access content'
+
+event_dashboard.term_show:
+  path: '/term-show/{id}'
+  defaults:
+    _title: 'Term Details'
+    _controller: '\Drupal\event_dashboard\Controller\TermShowController::showAllTermDetails'
+  requirements:
+    _permission: 'access content'
