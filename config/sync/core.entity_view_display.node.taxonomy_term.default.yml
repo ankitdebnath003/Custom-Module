@@ -1,0 +1,28 @@
+uuid: ffba6b86-1e62-46e8-a5c9-6cf6b457630b
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.taxonomy_term.field_event
+    - node.type.taxonomy_term
+  module:
+    - user
+id: node.taxonomy_term.default
+targetEntityType: node
+bundle: taxonomy_term
+mode: default
+content:
+  field_event:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 101
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden: {  }

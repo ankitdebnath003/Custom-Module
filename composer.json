@@ -25,8 +25,9 @@
         "drupal/core-recommended": "^10.0",
         "drupal/devel": "^5.1",
         "drupal/examples": "^4.0",
-        "drupal/multiple_fields_remove_button": "^2.2",
         "drupal/mix": "^1.6",
+        "drupal/multiple_fields_remove_button": "^2.2",
+        "drupal/pathauto": "^1.11",
         "drush/drush": "^11",
         "webflo/drupal-finder": "^1.2"
     },
