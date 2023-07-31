@@ -1,57 +1,61 @@
-uuid: 5b7ad4ea-1793-41b0-8d5d-cc231cbe6967
+uuid: 6e3f55cb-a25a-482d-8a43-56a05f2e7cf2
 langcode: en
 status: true
 dependencies:
   config:
-    - field.field.node.blog_post.body
-    - field.field.node.blog_post.field_blog_comments
-    - field.field.node.blog_post.field_blog_tags
-    - node.type.blog_post
+    - field.field.node.js_test.field_phone
+    - node.type.js_test
   module:
     - path
-_core:
-  default_config_hash: 0ThS2gDcb78ZIPFZv1gRW44jZqezcVMyiXzx1-VwViY
-id: node.blog_post.default
+id: node.js_test.default
 targetEntityType: node
-bundle: blog_post
+bundle: js_test
 mode: default
 content:
   created:
     type: datetime_timestamp
-    weight: 2
+    weight: 10
     region: content
     settings: {  }
     third_party_settings: {  }
+  field_phone:
+    type: string_textfield
+    weight: 123
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
   path:
     type: path
-    weight: 5
+    weight: 30
     region: content
     settings: {  }
     third_party_settings: {  }
   promote:
     type: boolean_checkbox
-    weight: 3
+    weight: 15
     region: content
     settings:
       display_label: true
     third_party_settings: {  }
   status:
     type: boolean_checkbox
-    weight: 6
+    weight: 120
     region: content
     settings:
       display_label: true
     third_party_settings: {  }
   sticky:
     type: boolean_checkbox
-    weight: 4
+    weight: 16
     region: content
     settings:
       display_label: true
     third_party_settings: {  }
   title:
     type: string_textfield
-    weight: 0
+    weight: -5
     region: content
     settings:
       size: 60
@@ -59,7 +63,7 @@ content:
     third_party_settings: {  }
   uid:
     type: entity_reference_autocomplete
-    weight: 1
+    weight: 5
     region: content
     settings:
       match_operator: CONTAINS
@@ -67,7 +71,4 @@ content:
       size: 60
       placeholder: ''
     third_party_settings: {  }
-hidden:
-  body: true
-  field_blog_comments: true
-  field_blog_tags: true
+hidden: {  }
