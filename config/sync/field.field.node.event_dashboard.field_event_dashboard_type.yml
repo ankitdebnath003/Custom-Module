@@ -1,0 +1,24 @@
+uuid: 82c77504-a6fb-4b35-b5fe-de0b2c9072e9
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_event_dashboard_type
+    - node.type.event_dashboard
+  module:
+    - text
+_core:
+  default_config_hash: J-An0ZcoTbb84PmR-G04ft2Fwmk0g7plIQW_Memm-XQ
+id: node.event_dashboard.field_event_dashboard_type
+field_name: field_event_dashboard_type
+entity_type: node
+bundle: event_dashboard
+label: 'Event Type'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  allowed_formats: {  }
+field_type: text

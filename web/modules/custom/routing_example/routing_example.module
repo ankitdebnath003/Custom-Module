@@ -1,0 +1,31 @@
+<?php
+
+/**
+ * @file
+ * Implemented a custom hook and existing hook to track of a node view count.
+ */
+
+use Drupal\Core\Entity\EntityInterface;
+use Drupal\Core\Session\AccountInterface;
+use Drupal\user\Entity\Role;
+use Drupal\user\Entity\User;
+use Symfony\Component\HttpFoundation\RedirectResponse;
+
+/**
+ * Implements hook_entity_access().
+ *
+ * This hook is used to remove the permission to editor role to view the route.
+ */
+function routing_example_entity_access(EntityInterface $entity, $operation, AccountInterface $account) {
+  $route_name = \Drupal::routeMatch()->getRouteName();
+  $userEntity = User::load($account->id());
+  if ($route_name == 'routing_example.routing_example' && $userEntity->hasRole('editor')) {
+    $role = Role::load('editor');
+    if ($role->hasPermission('access the custom page')) {
+      $role->revokePermission('access the custom page');
+      $role->save();
+      $response = new RedirectResponse('/routing-example');
+      $response->send();
+    }
+  }
+}

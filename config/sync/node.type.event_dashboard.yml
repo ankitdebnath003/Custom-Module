@@ -1,0 +1,19 @@
+uuid: bb074b8e-e1f2-42d5-856f-6be194c8d64a
+langcode: en
+status: true
+dependencies:
+  module:
+    - menu_ui
+third_party_settings:
+  menu_ui:
+    available_menus: {  }
+    parent: 'main:'
+_core:
+  default_config_hash: 31z9u4flRt4l66Go88fPNEld_fZyH3bji5uxpDQgrC8
+name: Event
+type: event_dashboard
+description: 'Custom entity create for Movies.'
+help: ''
+new_revision: false
+preview_mode: 1
+display_submitted: true

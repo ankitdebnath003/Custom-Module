@@ -1,0 +1,56 @@
+<?php
+
+/**
+ * @file
+ * Primary module hooks for Event Dashboard module.
+ */
+
+/**
+ * Implements hook_theme().
+ */
+function event_dashboard_theme($existing, $type, $theme, $path) {
+  return [
+    'event_dashboard' => [
+      'variables' => [
+        'years' => NULL,
+        'quarters' => NULL,
+        'event_types' => NULL,
+      ],
+    ],
+    'term' => [
+      'variables' => [
+        'term_id' => NULL,
+        'term_uuid' => NULL,
+        'node_details' => NULL,
+      ],
+    ],
+  ];
+}
+
+/**
+ * Implements hook_ENTITY_TYPE_update().
+ *
+ * Checking if the Event vocabulary's term getting updated then delete the old
+ * path alias and set a new alias.
+ */
+function event_dashboard_taxonomy_term_update($term) {
+  if ($term->bundle() == 'event') {
+    $path = '/term-show/' . $term->id();
+    $new_alias = '/term-show/' . $term->label();
+
+    $path_alias_manager = \Drupal::entityTypeManager()->getStorage('path_alias');
+
+    $alias_objects = $path_alias_manager->loadByProperties([
+      'path' => $path,
+    ]);
+
+    foreach ($alias_objects as $alias_object) {
+      $alias_object->delete();
+    }
+
+    $path_alias_manager->create([
+      'path'     => $path,
+      'alias'    => $new_alias,
+    ])->save();
+  }
+}

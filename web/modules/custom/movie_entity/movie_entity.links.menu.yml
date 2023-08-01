@@ -1,0 +1,5 @@
+entity.movie_entity.overview:
+  title: Movie entities
+  parent: system.admin_structure
+  description: 'List of movie entities.'
+  route_name: entity.movie_entity.collection

@@ -1,0 +1,24 @@
+uuid: f7a7465a-3caf-4248-85b2-7e82f62423c2
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - text
+  enforced:
+    module:
+      - movie_entity
+_core:
+  default_config_hash: a0H3HpIfXwiIcooNsGG3aW-f_oqNF9hOVbOgRMHKtmk
+id: node.field_movie_entity_body
+field_name: field_movie_entity_body
+entity_type: node
+type: text_with_summary
+settings: {  }
+module: text
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: true
+custom_storage: false

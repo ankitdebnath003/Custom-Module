@@ -1,0 +1,23 @@
+uuid: a12f5c8a-f504-4363-b6a9-5ef0910f03cd
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_event_dashboard_date
+    - node.type.event_dashboard
+  module:
+    - datetime
+_core:
+  default_config_hash: 7H_IcSm5PaYeJcATztWwDR2mmGxMS60KjdL5UiEDFlA
+id: node.event_dashboard.field_event_dashboard_date
+field_name: field_event_dashboard_date
+entity_type: node
+bundle: event_dashboard
+label: 'Event Date'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: datetime

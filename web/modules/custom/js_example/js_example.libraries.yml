@@ -1,0 +1,7 @@
+js-phone:
+  version: 1.x
+  js:
+    js/js-example.js: {}
+  dependencies:
+    - core/drupal
+    - core/jquery

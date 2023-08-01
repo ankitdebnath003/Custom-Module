@@ -1,0 +1,5 @@
+name: Budget Form
+type: module
+description: Add the movie budget
+package: Custom Module
+core_version_requirement: ^9 || ^10
