@@ -1,0 +1,24 @@
+uuid: 3a1c9107-f6f2-4de3-9edf-6cc32af7c8b5
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - olivero
+id: olivero_pagetitle
+theme: olivero
+region: breadcrumb
+weight: 0
+provider: null
+plugin: page_title_block
+settings:
+  id: page_title_block
+  label: 'Page title'
+  label_display: '0'
+  provider: core
+visibility:
+  request_path:
+    id: request_path
+    negate: true
+    pages: /flagship-form

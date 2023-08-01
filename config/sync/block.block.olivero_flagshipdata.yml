@@ -1,0 +1,25 @@
+uuid: 65fba289-633d-471f-9775-412012b87f52
+langcode: en
+status: true
+dependencies:
+  module:
+    - flagship_form
+    - system
+  theme:
+    - olivero
+id: olivero_flagshipdata
+theme: olivero
+region: content
+weight: 0
+provider: null
+plugin: flagship_data
+settings:
+  id: flagship_data
+  label: 'Flagship Data'
+  label_display: visible
+  provider: flagship_form
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    pages: '<front>'
