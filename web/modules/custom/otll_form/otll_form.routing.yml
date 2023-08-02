@@ -1,0 +1,7 @@
+otll_form.buildForm:
+  path: '/otll-form'
+  defaults: 
+    _form: '\Drupal\otll_form\Form\OtllForm'
+    _title: 'Generate One Time Login Link'
+  requirements:
+    _permission: 'administrator'
