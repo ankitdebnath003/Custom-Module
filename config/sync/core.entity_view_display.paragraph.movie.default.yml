@@ -1,0 +1,50 @@
+uuid: 0b9074ff-be1f-43fe-b215-5a8f22eeb623
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.movie.field_city
+    - field.field.paragraph.movie.field_theater
+    - field.field.paragraph.movie.field_time
+    - paragraphs.paragraphs_type.movie
+id: paragraph.movie.default
+targetEntityType: paragraph
+bundle: movie
+mode: default
+content:
+  field_city:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_theater:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_time:
+    type: timestamp
+    label: above
+    settings:
+      date_format: medium
+      custom_date_format: ''
+      timezone: ''
+      tooltip:
+        date_format: long
+        custom_date_format: ''
+      time_diff:
+        enabled: false
+        future_format: '@interval hence'
+        past_format: '@interval ago'
+        granularity: 2
+        refresh: 60
+    third_party_settings: {  }
+    weight: 2
+    region: content
+hidden: {  }

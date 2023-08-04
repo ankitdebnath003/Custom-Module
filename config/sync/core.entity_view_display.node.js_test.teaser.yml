@@ -1,0 +1,22 @@
+uuid: 5172b6b3-74cb-4055-8894-1c9b174a89dd
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.js_test.field_phone
+    - node.type.js_test
+  module:
+    - user
+id: node.js_test.teaser
+targetEntityType: node
+bundle: js_test
+mode: teaser
+content:
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  field_phone: true

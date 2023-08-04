@@ -1,0 +1,25 @@
+uuid: 1d3d183e-c654-46cb-9a2a-71bc1aa78cf8
+langcode: en
+status: true
+dependencies:
+  module:
+    - flagship_form
+    - system
+  theme:
+    - custom_theme
+id: custom_theme_flagshipdata
+theme: custom_theme
+region: content
+weight: -6
+provider: null
+plugin: flagship_data
+settings:
+  id: flagship_data
+  label: 'Flagship Data'
+  label_display: '0'
+  provider: flagship_form
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    pages: '<front>'

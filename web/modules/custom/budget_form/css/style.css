@@ -1,0 +1,9 @@
+.toolbar-icon-budget-form-budget::before {
+  background-image: url('../images/budget.png');
+  background-size: 50px 50px !important;
+}
+
+.toolbar-icon-budget-form-budget.is-active::before,
+.toolbar-icon-budget-form-budget:active::before {
+  filter: brightness(50%) !important;
+}

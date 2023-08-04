@@ -1,0 +1,21 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_event_dashboard_type
+    - node.type.event_dashboard
+  module:
+    - image
+id: node.event_dashboard.field_event_dashboard_type
+field_name: field_event_dashboard_type
+entity_type: node
+bundle: event_dashboard
+label: 'Event Type'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  allowed_formats: {  }
+field_type: text

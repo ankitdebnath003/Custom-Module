@@ -1,0 +1,4 @@
+access the custom page:
+  title: 'Administer Routing Example'
+  description: 'Allows users to administer Routing Page.'
+  restrict access: true

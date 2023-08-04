@@ -1,0 +1,34 @@
+uuid: de48085a-9c1f-4c68-bbd5-553891d369c3
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.event_dashboard.field_event_dashboard_date
+    - field.field.node.event_dashboard.field_event_dashboard_details
+    - field.field.node.event_dashboard.field_event_dashboard_type
+    - node.type.event_dashboard
+  module:
+    - text
+    - user
+_core:
+  default_config_hash: Yz9Bkgq0yg2fQc2bqH3T_UjRfPPIlV0_dI7cm2Rl6KM
+id: node.event_dashboard.teaser
+targetEntityType: node
+bundle: event_dashboard
+mode: teaser
+content:
+  field_event_dashboard_details:
+    label: hidden
+    type: text_summary_or_trimmed
+    weight: 101
+    settings:
+      trim_length: 600
+    third_party_settings: {  }
+    region: content
+  links:
+    weight: 100
+    region: content
+hidden:
+  field_event_dashboard_date: true
+  field_event_dashboard_type: true

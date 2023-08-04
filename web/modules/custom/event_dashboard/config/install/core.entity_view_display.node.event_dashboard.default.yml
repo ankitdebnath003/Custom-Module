@@ -1,0 +1,39 @@
+langcode: en
+status: true
+dependencies:
+    config:
+        - field.field.node.event_dashboard.field_event_dashboard_details
+        - field.field.node.event_dashboard.field_event_dashboard_type
+        - field.field.node.event_dashboard.field_event_dashboard_date
+        - node.type.event_dashboard
+    module:
+        - text
+        - user
+id: node.event_dashboard.default
+targetEntityType: node
+bundle: event_dashboard
+mode: default
+content:
+    field_event_dashboard_details:
+        label: above
+        type: text_default
+        weight: 101
+        settings: {  }
+        third_party_settings: {  }
+    field_event_dashboard_type:
+        label: inline
+        type: text_default
+        weight: 101
+        settings: {  }
+        third_party_settings: {  }
+    field_event_dashboard_date:
+        type: datetime_default
+        label: above
+        settings:
+            timezone_override: ''
+            format_type: medium
+        third_party_settings: {  }
+        weight: 103
+    links:
+        weight: 100
+hidden: {  }

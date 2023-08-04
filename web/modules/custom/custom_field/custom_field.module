@@ -1,0 +1,26 @@
+<?php
+
+/**
+ * @file
+ * Implemented hooks for the module.
+ */
+
+/**
+ * Implements hook_theme().
+ */
+function custom_field_theme() {
+  return [
+    'custom_field' => [
+      'variables' => [
+        'dynamic_color' => NULL,
+      ],
+    ],
+  ];
+}
+
+/**
+ * Implements hook_multiple_field_remove_button_field_types_alter().
+ */
+function custom_field_multiple_field_remove_button_field_types_alter(array &$fieldTypes) {
+  $fieldTypes[] = "rgb";
+}

@@ -1,0 +1,25 @@
+uuid: 2fff11d3-c596-4140-b78c-41cf8acafd9e
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - text
+  enforced:
+    module:
+      - event_dashboard
+_core:
+  default_config_hash: VpZsiKiarcTP1S0C6gf0T86x6v70Yn_IP_olsSFE1MU
+id: node.field_event_dashboard_type
+field_name: field_event_dashboard_type
+entity_type: node
+type: text
+settings:
+  max_length: 255
+module: text
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

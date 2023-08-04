@@ -1,0 +1,9 @@
+services:
+  event_dashboard.uninstall_validator:
+    class: Drupal\event_dashboard\EventUninstallValidator
+    arguments:
+      - '@string_translation'
+      - '@entity_type.manager'
+    tags:
+      - { name: module_install.uninstall_validator }
+    lazy: true

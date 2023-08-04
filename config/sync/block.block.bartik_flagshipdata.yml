@@ -1,0 +1,25 @@
+uuid: 14e4c300-d580-48ce-a12a-4340d21479c7
+langcode: en
+status: true
+dependencies:
+  module:
+    - flagship_form
+    - system
+  theme:
+    - bartik
+id: bartik_flagshipdata
+theme: bartik
+region: content
+weight: -6
+provider: null
+plugin: flagship_data
+settings:
+  id: flagship_data
+  label: 'Flagship Data'
+  label_display: '0'
+  provider: flagship_form
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    pages: '<front>'

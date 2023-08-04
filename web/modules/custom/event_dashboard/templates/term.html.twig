@@ -1,0 +1,20 @@
+<h3>The Term id is : {{ term_id }}</h3>
+<h3>The Term uuid is : {{ term_uuid }}</h3>
+
+{% if node_details is not empty %}    
+    <h3>Details of Nodes using this taxonomy term :-</h3>
+    <table>
+        <tr>
+            <th>Node Title</th>
+            <th>Node Link</th>
+        </tr>
+        {% for nodes in node_details %}
+            <tr>
+                <td>{{ nodes.title }}</td>
+                <td><a href="{{ nodes.link }}">{{ nodes.link }}</a></td>
+            </tr>
+        {% endfor %}
+    </table>
+{% else %}
+    <h3>There are no nodes using this taxonomy term.</h3>
+{% endif %}

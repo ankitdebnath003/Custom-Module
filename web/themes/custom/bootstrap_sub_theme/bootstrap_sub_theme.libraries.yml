@@ -1,0 +1,9 @@
+movie-entity:
+  css:
+    theme:
+      css/movie-entity.style.css: {}
+
+twig-example:
+  css:
+    theme:
+      css/twig-example.style.css: {}

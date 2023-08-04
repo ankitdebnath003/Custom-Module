@@ -1,0 +1,17 @@
+{% extends 'themes/custom/bootstrap_sub_theme/templates/layout/page.html.twig' %}
+
+{% block sub_content %}
+
+    {{ attach_library('bootstrap_sub_theme/twig-example') }}
+    <div class='sub-content'>
+        <div class="webform">
+            <h2>Webform</h2>
+            {{ drupal_entity('webform', 'contact') }}
+        </div>
+        <div class="paragraph">
+            <h2>Paragraph</h2>
+            {{ drupal_entity('paragraph', 1) }}
+        </div>
+    </div>
+
+{% endblock %}
