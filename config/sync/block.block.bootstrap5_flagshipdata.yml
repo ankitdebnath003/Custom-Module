@@ -1,0 +1,25 @@
+uuid: 96d8cf9c-969d-4a57-9b4b-ca8053f6de3c
+langcode: en
+status: true
+dependencies:
+  module:
+    - flagship_form
+    - system
+  theme:
+    - bootstrap5
+id: bootstrap5_flagshipdata
+theme: bootstrap5
+region: content
+weight: -6
+provider: null
+plugin: flagship_data
+settings:
+  id: flagship_data
+  label: 'Flagship Data'
+  label_display: '0'
+  provider: flagship_form
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    pages: '<front>'

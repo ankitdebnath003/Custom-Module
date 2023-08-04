@@ -1,0 +1,10 @@
+uuid: f21a8f72-6415-4713-936f-d4f594656d0d
+langcode: en
+status: true
+dependencies: {  }
+id: movie
+label: Movie
+icon_uuid: null
+icon_default: null
+description: ''
+behavior_plugins: {  }

@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - core.entity_view_mode.node.teaser
+    - field.field.node.movie_entity.field_movie_details
     - field.field.node.movie_entity.field_movie_entity_body
     - field.field.node.movie_entity.field_movie_entity_image
     - field.field.node.movie_entity.field_movie_entity_number
@@ -19,16 +20,17 @@ bundle: movie_entity
 mode: teaser
 content:
   field_movie_entity_body:
-    label: hidden
     type: text_summary_or_trimmed
-    weight: 101
+    label: hidden
     settings:
       trim_length: 600
     third_party_settings: {  }
+    weight: 101
     region: content
   links:
     weight: 100
     region: content
 hidden:
+  field_movie_details: true
   field_movie_entity_image: true
   field_movie_entity_number: true

@@ -30,6 +30,7 @@ module:
   devel_generate: 0
   dynamic_page_cache: 0
   editor: 0
+  entity_reference_revisions: 0
   event_dashboard: 0
   field: 0
   field_ui: 0
@@ -52,6 +53,7 @@ module:
   options: 0
   otll_form: 0
   page_cache: 0
+  paragraphs_type_permissions: 0
   path: 0
   path_alias: 0
   phpass: 0
@@ -67,13 +69,22 @@ module:
   token: 0
   toolbar: 0
   tour: 0
+  twig: 0
+  twig_tweak: 0
   update: 0
   user: 0
   views_ui: 0
+  webform: 0
   welcome: 0
   pathauto: 1
   views: 10
+  paragraphs: 11
 theme:
   olivero: 0
   claro: 0
+  stable9: 0
+  bootstrap5: 0
+  bartik: 0
+  custom_theme: 0
+  bootstrap_sub_theme: 0
 profile: standard

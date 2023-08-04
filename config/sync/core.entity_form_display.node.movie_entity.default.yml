@@ -3,6 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.node.movie_entity.field_movie_details
     - field.field.node.movie_entity.field_movie_entity_body
     - field.field.node.movie_entity.field_movie_entity_image
     - field.field.node.movie_entity.field_movie_entity_number
@@ -10,6 +11,7 @@ dependencies:
     - node.type.movie_entity
   module:
     - image
+    - paragraphs
     - path
     - text
 _core:
@@ -25,27 +27,52 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
+  field_movie_details:
+    type: paragraphs
+    weight: 121
+    region: content
+    settings:
+      title: Paragraph
+      title_plural: Paragraphs
+      edit_mode: open
+      closed_mode: summary
+      autocollapse: none
+      closed_mode_threshold: 0
+      add_mode: dropdown
+      form_display_mode: default
+      default_paragraph_type: ''
+      features:
+        collapse_edit_all: collapse_edit_all
+        duplicate: duplicate
+    third_party_settings: {  }
   field_movie_entity_body:
-    label: hidden
     type: text_textarea_with_summary
     weight: 101
-    settings: {  }
-    third_party_settings: {  }
     region: content
-  field_movie_entity_image:
+    settings:
+      rows: 9
+      summary_rows: 3
+      placeholder: ''
+      show_summary: false
+    third_party_settings: {  }
     label: hidden
+  field_movie_entity_image:
     type: image_image
     weight: 102
-    settings: {  }
-    third_party_settings: {  }
     region: content
-  field_movie_entity_number:
+    settings:
+      progress_indicator: throbber
+      preview_image_style: thumbnail
+    third_party_settings: {  }
     label: hidden
+  field_movie_entity_number:
     type: number
     weight: 101
-    settings: {  }
-    third_party_settings: {  }
     region: content
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+    label: hidden
   links:
     weight: 100
     region: content
@@ -57,24 +84,24 @@ content:
     third_party_settings: {  }
   promote:
     type: boolean_checkbox
-    settings:
-      display_label: true
     weight: 15
     region: content
+    settings:
+      display_label: true
     third_party_settings: {  }
   status:
     type: boolean_checkbox
-    settings:
-      display_label: true
     weight: 120
     region: content
+    settings:
+      display_label: true
     third_party_settings: {  }
   sticky:
     type: boolean_checkbox
-    settings:
-      display_label: true
     weight: 16
     region: content
+    settings:
+      display_label: true
     third_party_settings: {  }
   title:
     type: string_textfield
@@ -87,11 +114,11 @@ content:
   uid:
     type: entity_reference_autocomplete
     weight: 5
+    region: content
     settings:
       match_operator: CONTAINS
-      size: '60'
-      placeholder: ''
       match_limit: 10
-    region: content
+      size: 60
+      placeholder: ''
     third_party_settings: {  }
 hidden: {  }

@@ -1,0 +1,47 @@
+<?php
+
+/**
+ * @file
+ * Implementing Theme hooks.
+ */
+
+use Drupal\node\NodeInterface;
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function bootstrap_sub_theme_preprocess_html(&$variables) {
+  $node = \Drupal::routeMatch()->getParameter('node');
+  if ($node instanceof NodeInterface && $node->bundle() == 'movie_entity') {
+    $variables['attributes']['class'][] = 'first-custom-theme';
+  }
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function bootstrap_sub_theme_preprocess_node(&$variables) {
+  if (\Drupal::routeMatch()->getRouteName() === 'entity.node.canonical') {
+    $node = $variables['node'];
+    if ($node->bundle() == 'movie_entity') {
+      $null_count = 0;
+      $movie_count = 0;
+      foreach ($variables['content']['field_movie_details'] as $item) {
+        if (gettype($item) === 'array' && isset($item['#paragraph'])) {
+          $para = $item['#paragraph'];
+          if ($para->get('field_city')->value === NULL && $para->get('field_theater')->value === NULL && $para->get('field_time')->value === NULL) {
+            $movie_count += 1;
+            $null_count += 1;
+          }
+          else {
+            $movie_count += 1;
+          }
+        }
+      }
+      if ($movie_count == $null_count) {
+        $variables['content']['paragraph'] = NULL;
+      }
+      $variables['content']['path'] = NULL;
+    }
+  }
+}
