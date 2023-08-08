@@ -1,0 +1,6 @@
+budget_form.budget:
+  title: 'Movie Budget Form'
+  description: 'Add your movie budget.'
+  route_name: budget_form.budget
+  parent: system.admin
+  weight: 5

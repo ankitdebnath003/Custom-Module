@@ -1,0 +1,56 @@
+uuid: fc49a9ae-e5e3-4c00-b3bc-0ecd4a9e3924
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.movie_entity.field_movie_details
+    - field.field.node.movie_entity.field_movie_entity_body
+    - field.field.node.movie_entity.field_movie_entity_image
+    - field.field.node.movie_entity.field_movie_entity_number
+    - node.type.movie_entity
+  module:
+    - entity_reference_revisions
+    - image
+    - text
+    - user
+_core:
+  default_config_hash: Eacf5VBuozOvTX2veH6EnGzPVR1onLswc8MLy-yVka8
+id: node.movie_entity.default
+targetEntityType: node
+bundle: movie_entity
+mode: default
+content:
+  field_movie_details:
+    type: entity_reference_revisions_entity_view
+    label: above
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    weight: 103
+    region: content
+  field_movie_entity_body:
+    type: text_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 101
+    region: content
+  field_movie_entity_image:
+    type: image
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 102
+    region: content
+  field_movie_entity_number:
+    type: number_integer
+    label: inline
+    settings: {  }
+    third_party_settings: {  }
+    weight: 101
+    region: content
+  links:
+    weight: 100
+    region: content
+hidden: {  }

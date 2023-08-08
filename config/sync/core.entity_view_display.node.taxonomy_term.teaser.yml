@@ -1,0 +1,22 @@
+uuid: 3b5a3419-f22c-4f4e-8d05-6406a17728e4
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.taxonomy_term.field_event
+    - node.type.taxonomy_term
+  module:
+    - user
+id: node.taxonomy_term.teaser
+targetEntityType: node
+bundle: taxonomy_term
+mode: teaser
+content:
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  field_event: true

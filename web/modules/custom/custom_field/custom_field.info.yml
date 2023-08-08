@@ -1,0 +1,5 @@
+name: Custom field
+type: module
+description: Create Custom Field
+package: Custom Module
+core_version_requirement: ^10

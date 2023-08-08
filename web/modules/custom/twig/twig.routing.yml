@@ -1,0 +1,8 @@
+twig.example:
+  path: '/twig-example'
+  defaults:
+    _title: 'Example'
+    _controller: '\Drupal\twig\Controller\TwigController::build'
+  requirements:
+    _permission: 'access content'
+

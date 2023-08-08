@@ -1,0 +1,45 @@
+<?php
+
+/**
+ * @file
+ * Implementing some hooks.
+ */
+
+use Drupal\views\Plugin\views\query\QueryPluginBase;
+use Drupal\views\ViewExecutable;
+
+/**
+ * Implements hook_views_query_alter().
+ */
+function views_example_views_query_alter(ViewExecutable $view, QueryPluginBase $query) {
+  if ($view->id() === 'custom_view') {
+
+    // For adding the sorting Randomly.
+    // $query->addOrderBy(NULL, 'RAND()');
+
+    // For adding the sorting as Ascending or Descending.
+    $query->orderby = [
+      [
+        'field' => 'title',
+        'direction' => 'ASC',
+        // 'direction' => 'DESC',
+      ],
+    ];
+  }
+}
+
+/**
+ * Implements hook_views_data_alter().
+ */
+function views_example_views_data_alter(&$data) {
+  $data['node_field_data']['user'] = [
+    'title' => t('User Relationship'),
+    'help' => t('Relate node to the user entity.'),
+    'relationship' => [
+      'base' => 'users_field_data',
+      'base field' => 'uid',
+      'relationship field' => 'uid',
+      'id' => 'standard',
+    ],
+  ];
+}

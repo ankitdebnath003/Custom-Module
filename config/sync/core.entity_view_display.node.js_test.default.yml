@@ -1,0 +1,28 @@
+uuid: 793ed1c3-f7c9-4c7f-b2e6-885e9766d76f
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.js_test.field_phone
+    - node.type.js_test
+  module:
+    - user
+id: node.js_test.default
+targetEntityType: node
+bundle: js_test
+mode: default
+content:
+  field_phone:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 103
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden: {  }

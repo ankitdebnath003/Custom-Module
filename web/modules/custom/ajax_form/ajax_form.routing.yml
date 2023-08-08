@@ -1,0 +1,7 @@
+ajax_form.buildForm:
+  path: '/ajax-form'
+  defaults: 
+    _form: '\Drupal\ajax_form\Form\AjaxForm'
+    _title: 'Ajax Form Page'
+  requirements:
+    _permission: 'administrator'

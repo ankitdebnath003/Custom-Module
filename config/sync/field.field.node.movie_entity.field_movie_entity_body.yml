@@ -1,0 +1,26 @@
+uuid: 06c7bcb9-d14b-4a87-830a-a395b936aea0
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_movie_entity_body
+    - node.type.movie_entity
+  module:
+    - text
+_core:
+  default_config_hash: TH9xkpe_Ru3AZLJMB9NDtMkf4dPd9QV-xWeCuquZqyw
+id: node.movie_entity.field_movie_entity_body
+field_name: field_movie_entity_body
+entity_type: node
+bundle: movie_entity
+label: 'Movie Description'
+description: 'More specific information about the Movie.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  display_summary: true
+  required_summary: false
+  allowed_formats: {  }
+field_type: text_with_summary

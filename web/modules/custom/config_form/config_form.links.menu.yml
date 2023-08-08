@@ -1,0 +1,6 @@
+config_form.buildForm:
+  title: Config Form
+  description: Add config form!!!!
+  route_name: config_form.buildForm
+  weight: 0
+  menu_name: main
