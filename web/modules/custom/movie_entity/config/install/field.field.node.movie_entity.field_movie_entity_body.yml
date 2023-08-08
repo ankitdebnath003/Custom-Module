@@ -1,0 +1,20 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.movie_entity
+  module:
+    - text
+id: node.movie_entity.field_movie_entity_body
+field_name: field_movie_entity_body
+entity_type: node
+bundle: movie_entity
+label: Movie Description
+description: 'More specific information about the Movie.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  display_summary: true
+field_type: text_with_summary

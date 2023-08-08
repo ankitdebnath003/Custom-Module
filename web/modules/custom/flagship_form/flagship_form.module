@@ -1,0 +1,14 @@
+<?php 
+
+/**
+ * Implements hook_theme().
+ */
+function flagship_form_theme($existing, $type, $theme, $path) {
+	return [
+		'flagship_form' => [
+			'variables' => [
+				'data' => NULL,
+			],
+		],
+	];
+}

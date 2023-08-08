@@ -1,0 +1,25 @@
+uuid: 5c80af7d-cd4c-4336-bf58-dff7adccac67
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+  enforced:
+    module:
+      - movie_entity
+_core:
+  default_config_hash: cwbYI5TNhQUfNsJlG5xLJjsjLeHv__sX-Wzf0MZiIIc
+id: node.field_movie_entity_number
+field_name: field_movie_entity_number
+entity_type: node
+type: integer
+settings:
+  unsigned: false
+  size: normal
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

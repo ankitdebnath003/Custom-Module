@@ -1,0 +1,7 @@
+plugin_example.example:
+  path: '/custom-welcome-page'
+  defaults:
+    _title: 'Example'
+    _controller: '\Drupal\plugin_example\Controller\PluginExampleController::customPage'
+  requirements:
+    _permission: 'access content'
