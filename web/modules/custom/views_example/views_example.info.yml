@@ -1,0 +1,5 @@
+name: Views Example
+description: Views module to test hooks of views
+core_version_requirement: ^10
+type: module
+package: Custom Module

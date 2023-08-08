@@ -73,6 +73,7 @@ module:
   twig_tweak: 0
   update: 0
   user: 0
+  views_example: 0
   views_ui: 0
   webform: 0
   welcome: 0
