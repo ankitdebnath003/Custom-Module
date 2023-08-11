@@ -1,0 +1,7 @@
+custom_api.example:
+  path: '/event-api'
+  defaults:
+    _title: 'Event API'
+    _controller: '\Drupal\custom_api\Controller\EventNodeApiController::generateApi'
+  requirements:
+    _permission: 'access content'

@@ -1,0 +1,6 @@
+_core:
+  default_config_hash: 3Ybdds1NRrtR0rqZug464LQ4cuV_LOvcwCr5DD9zblc
+mailbox_layer:
+  api_key: null
+  email_expire: '1'
+enabled_webforms: {  }

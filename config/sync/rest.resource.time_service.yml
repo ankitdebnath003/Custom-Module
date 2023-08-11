@@ -1,0 +1,20 @@
+uuid: 02ede177-cb7a-412c-8963-0fa8f0b1993f
+langcode: en
+status: true
+dependencies:
+  module:
+    - serialization
+    - time_service
+    - user
+_core:
+  default_config_hash: TiDdxh-N88NVGchlaeB6dBm_pCTZSwKM4dLr7sd4v_E
+id: time_service
+plugin_id: time_service
+granularity: method
+configuration:
+  GET:
+    supported_formats:
+      - json
+    supported_auth:
+      - basic_auth
+      - cookie

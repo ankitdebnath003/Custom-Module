@@ -1,0 +1,25 @@
+uuid: 164bb121-ce75-474c-8e4f-36a692c379d9
+langcode: en
+status: true
+dependencies:
+  module:
+    - datetime_range
+    - user
+  enforced:
+    module:
+      - login_time_restriction
+_core:
+  default_config_hash: GmBya7xXonvmC49usYJQlpaoMKVX3BvYz17TEPRfbWw
+id: user.field_ltr_access_time
+field_name: field_ltr_access_time
+entity_type: user
+type: daterange
+settings:
+  datetime_type: datetime
+module: datetime_range
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

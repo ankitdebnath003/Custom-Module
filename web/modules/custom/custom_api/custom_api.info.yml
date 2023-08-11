@@ -1,0 +1,5 @@
+name: Custom API
+type: module
+description: Api to fetch node details
+package: Custom Module
+core_version_requirement: ^9 || ^10

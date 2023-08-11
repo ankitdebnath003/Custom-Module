@@ -1,0 +1,27 @@
+uuid: 6c82f533-babd-48f4-9874-e3f0aa10b21e
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.user.field_ltr_access_time
+  module:
+    - datetime_range
+    - login_time_restriction
+    - user
+third_party_settings:
+  login_time_restriction:
+    field_widget: time_range
+_core:
+  default_config_hash: OlvzCu-eshyC_-YX6wDfbwMVLLGaV3XIMyfExKFVsM0
+id: user.user.field_ltr_access_time
+field_name: field_ltr_access_time
+entity_type: user
+bundle: user
+label: 'Access Time'
+description: "Add <code>Start</code> and <code>End</code> time of this user.\r\nEg: If the <code>Start</code> time is <code>10:00:00 AM</code> and the <code>End</code> time is <code>12:00:00 PM</code> then the site will only be accessible within the allowed range."
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: daterange

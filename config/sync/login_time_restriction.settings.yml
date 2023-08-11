@@ -1,0 +1,6 @@
+_core:
+  default_config_hash: pQldP0GFDktfuwzoVaxDYr9VXb6xRWPoiouskR9nTS8
+enable: true
+message: 'You are not authorized to access the site outside of your allowed time.'
+time_based_login_enable: false
+warning_time: 15
