@@ -25,6 +25,7 @@ module:
   custom_api: 0
   custom_field: 0
   custom_hook: 0
+  custom_mail: 0
   custom_menu: 0
   datetime: 0
   datetime_range: 0
@@ -69,6 +70,7 @@ module:
   search: 0
   serialization: 0
   shortcut: 0
+  smtp: 0
   standard: 0
   system: 0
   taxonomy: 0
