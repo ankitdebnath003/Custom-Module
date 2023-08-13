@@ -1,0 +1,5 @@
+name: Hook Example Module
+description: This is our Hook Example module to work with the hooks
+core_version_requirement: 10.x
+type: module
+package: Custom Modules

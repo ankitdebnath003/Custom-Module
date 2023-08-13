@@ -1,0 +1,12 @@
+name: Hello World Module
+description: This is our first hello world module
+core_version_requirement: 10.x
+type: module
+package: Custom Modules
+dependencies:
+  - action
+  - admin_toolbar:admin_toolbar_search
+test_dependencies:
+  - book
+permissions:
+  - 'access custom module'
